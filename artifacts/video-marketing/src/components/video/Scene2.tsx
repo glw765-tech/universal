@@ -34,13 +34,22 @@ export function Scene2() {
         </motion.h2>
 
         <motion.h3
-          className="font-body font-light text-2xl md:text-3xl text-[var(--color-text-secondary)] tracking-widest uppercase mb-12 text-center"
+          className="font-body font-light text-2xl md:text-3xl text-[var(--color-text-secondary)] tracking-widest uppercase mb-6 text-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2.0, duration: 1.2 }}
         >
           Send it to the universe
         </motion.h3>
+
+        <motion.p
+          className="font-body font-light text-base md:text-lg text-[var(--color-text-muted)] italic text-center max-w-xl mb-10 leading-relaxed px-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2.6, duration: 1.4 }}
+        >
+          The act of placing this order is itself an act of faith — and faith is what draws it to you.
+        </motion.p>
 
         <motion.div
           className="px-12 py-4 rounded-full bg-[var(--color-bg-light)] border border-[var(--color-accent)] glow-gold relative overflow-hidden"

@@ -41,7 +41,8 @@ export default function Home() {
         transition={{ delay: 0.4, duration: 1 }}
         className="text-amber-400/60 text-base text-center leading-relaxed mb-8 max-w-sm"
       >
-        Write your desire, seal it with $1, and send it into the cosmos. The universe will receive it, process it, and deliver it to you.
+        Write your desire, seal it with $1, and send it into the cosmos. The universe will receive it, process it, and deliver it to you.{" "}
+        <span className="text-amber-400/40">The act of placing this order is itself an act of faith — and that faith is what draws it to you.</span>
       </motion.p>
       <h1 className="font-serif text-3xl md:text-4xl text-foreground text-center leading-relaxed mb-8">
         What do you want from the universe?

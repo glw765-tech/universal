@@ -150,6 +150,9 @@ export default function OrderTracking() {
         <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
         <p className="text-xs tracking-widest text-muted-foreground uppercase mb-6 relative z-10">Your Desire</p>
         <p className="font-serif text-xl md:text-2xl text-foreground relative z-10 leading-snug">"{order.intention}"</p>
+        <p className="text-xs text-muted-foreground/50 italic mt-6 relative z-10 leading-relaxed max-w-sm mx-auto">
+          Placing this order is an act of faith — the assumption that it is already on its way. That assumption is the very thing that draws it to you.
+        </p>
       </div>
 
       {/* Share this moment button — shown on delivered orders */}
