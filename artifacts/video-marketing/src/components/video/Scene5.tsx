@@ -37,7 +37,7 @@ export function Scene5() {
         </motion.h1>
 
         <motion.p
-          className="font-body font-light text-xl md:text-2xl text-[var(--color-text-primary)] text-center tracking-widest mt-8"
+          className="font-body font-light text-3xl md:text-4xl text-[var(--color-text-primary)] text-center tracking-widest mt-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2.5, duration: 1.5 }}
