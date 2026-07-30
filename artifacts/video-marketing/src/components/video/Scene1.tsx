@@ -12,7 +12,7 @@ export function Scene1() {
       transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
     >
       <motion.h2 
-        className="font-display text-7xl md:text-8xl lg:text-9xl text-[var(--color-text-secondary)] mb-8 tracking-widest uppercase text-center"
+        className="font-display text-7xl md:text-8xl lg:text-9xl text-[var(--color-text-secondary)] mb-8 tracking-widest uppercase text-center w-full"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5, duration: 1.2 }}
