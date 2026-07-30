@@ -39,7 +39,7 @@ export default function Home() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.4, duration: 1 }}
-        className="text-muted-foreground/60 text-sm text-center leading-relaxed mb-8 max-w-sm"
+        className="text-primary/50 text-base text-center leading-relaxed mb-8 max-w-sm"
       >
         Write your desire, seal it with $1, and send it into the cosmos. The universe will receive it, process it, and deliver it to you.
       </motion.p>
