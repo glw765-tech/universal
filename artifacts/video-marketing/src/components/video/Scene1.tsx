@@ -32,6 +32,15 @@ export function Scene1() {
           </motion.span>
         ))}
       </p>
+
+      <motion.p
+        className="font-body font-light text-2xl md:text-4xl text-[var(--color-text-secondary)] italic text-center max-w-3xl mt-10 leading-relaxed px-4"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5 + desireText.length * 0.05 + 0.8, duration: 1.4 }}
+      >
+        The act of placing this order is itself an act of faith — and that faith is what draws it to you.
+      </motion.p>
     </motion.div>
   );
 }
