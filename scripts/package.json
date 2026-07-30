@@ -5,7 +5,12 @@
   "type": "module",
   "scripts": {
     "hello": "tsx ./src/hello.ts",
+    "seed-universe-product": "tsx ./src/seed-universe-product.ts",
     "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "stripe": "*",
+    "stripe-replit-sync": "*"
   },
   "devDependencies": {
     "@types/node": "catalog:",

@@ -1,0 +1,27 @@
+kind = "web"
+previewPath = "/"
+title = "Order from the Universe"
+version = "1.0.0"
+id = "artifacts/universe-order"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 19760
+
+[services.development]
+run = "pnpm --filter @workspace/universe-order run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/universe-order", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/universe-order/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "19760"
+BASE_PATH = "/"
