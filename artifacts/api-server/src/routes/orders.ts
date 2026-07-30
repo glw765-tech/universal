@@ -229,19 +229,28 @@ router.post("/orders/:id/checkout", async (req, res): Promise<void> => {
     return;
   }
 
-  // Get the $1 product price
-  const product = await storage.getUniverseOrderProduct();
-  if (!product) {
+  const stripe = await getUncachableStripeClient();
+
+  // Query Stripe directly for the active price — sync tables may lag in production
+  const products = await stripe.products.search({
+    query: "name:'Universe Order' AND active:'true'",
+  });
+  if (!products.data.length) {
     res.status(500).json({ error: "Universe Order product not configured" });
     return;
   }
+  const prices = await stripe.prices.list({ product: products.data[0].id, active: true, limit: 1 });
+  if (!prices.data.length) {
+    res.status(500).json({ error: "Universe Order product has no active price" });
+    return;
+  }
+  const priceId = prices.data[0].id;
 
-  const stripe = await getUncachableStripeClient();
   const baseUrl = `https://${process.env.REPLIT_DOMAINS?.split(",")[0] || req.get("host")}`;
 
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
-    line_items: [{ price: product.price_id as string, quantity: 1 }],
+    line_items: [{ price: priceId, quantity: 1 }],
     mode: "payment",
     success_url: `${baseUrl}/success?orderId=${order.id}`,
     cancel_url: `${baseUrl}/cancel`,
