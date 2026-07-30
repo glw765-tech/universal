@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "96AfeQ4As-VU-9b4yCXXM"
+uri = "file://artifacts/video-marketing/public/audio/bg_music.mp3"
+type = "audio"
+title = "cosmic ambient background music"

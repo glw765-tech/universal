@@ -1,0 +1,27 @@
+kind = "video"
+previewPath = "/video-marketing/"
+title = "Order from the Universe — Video"
+version = "1.0.0"
+id = "artifacts/video-marketing"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/video-marketing/" ]
+localPort = 18769
+
+[services.development]
+run = "pnpm --filter @workspace/video-marketing run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/video-marketing", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/video-marketing/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "18769"
+BASE_PATH = "/video-marketing/"

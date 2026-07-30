@@ -148,7 +148,7 @@ export default function OrderTracking() {
 
       <div className="mt-12 p-8 border border-white/5 rounded-2xl bg-white/5 backdrop-blur-sm text-center relative overflow-hidden group">
         <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
-        <p className="text-xs tracking-widest text-muted-foreground uppercase mb-6 relative z-10">Your Intention</p>
+        <p className="text-xs tracking-widest text-muted-foreground uppercase mb-6 relative z-10">Your Desire</p>
         <p className="font-serif text-xl md:text-2xl text-foreground relative z-10 leading-snug">"{order.intention}"</p>
       </div>
 
@@ -196,7 +196,7 @@ export default function OrderTracking() {
               </div>
               <p className="font-serif text-3xl md:text-5xl text-primary mb-6">The Universe Delivers</p>
               <p className="text-muted-foreground text-lg leading-relaxed max-w-md mb-12">
-                Your intention has been fulfilled. Keep this feeling of trust with you as you move forward.
+                Your desire has been fulfilled. Keep this feeling of trust with you as you move forward.
               </p>
               <div className="flex flex-col sm:flex-row items-center gap-4">
                 <button 
