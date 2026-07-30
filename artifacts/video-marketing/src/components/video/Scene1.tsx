@@ -5,7 +5,7 @@ export function Scene1() {
   
   return (
     <motion.div 
-      className="absolute inset-0 flex flex-col items-center justify-center z-10 p-10"
+      className="absolute inset-0 flex flex-col items-center justify-start z-10 p-10 pt-[20%]"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0, scale: 1.1, filter: 'blur(10px)' }}
