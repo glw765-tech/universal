@@ -63,7 +63,7 @@ export default function Home() {
               exit={{ opacity: 0, scale: 0.95 }}
               onClick={handleSend}
               disabled={createOrder.isPending || createCheckout.isPending}
-              className="px-8 py-4 rounded-full bg-primary text-primary-foreground font-medium tracking-widest uppercase text-xs hover:scale-105 transition-transform duration-300 disabled:opacity-50 disabled:hover:scale-100 shadow-[0_0_20px_rgba(251,191,36,0.2)] hover:shadow-[0_0_30px_rgba(251,191,36,0.4)] cursor-pointer"
+              className="px-8 py-4 rounded-full bg-primary text-primary-foreground font-medium tracking-widest uppercase text-xs hover:scale-105 transition-transform duration-300 disabled:opacity-50 disabled:hover:scale-100 shadow-[0_0_20px_rgba(160,80,255,0.3)] hover:shadow-[0_0_30px_rgba(160,80,255,0.5)] cursor-pointer"
             >
               {createOrder.isPending || createCheckout.isPending ? "Sealing..." : `Seal & Send for $1`}
             </motion.button>

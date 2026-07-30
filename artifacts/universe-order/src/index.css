@@ -45,34 +45,34 @@
 }
 
 :root {
-  /* Deep midnight blue theme */
-  --background: 222 47% 5%; 
-  --foreground: 210 40% 98%; 
-  
-  --muted: 217 33% 15%;
-  --muted-foreground: 215 20% 65%;
-  
-  /* Cosmic Gold accents */
-  --primary: 43 96% 56%; 
-  --primary-foreground: 222 47% 5%;
-  
-  --secondary: 217 33% 15%;
-  --secondary-foreground: 210 40% 98%;
-  
-  --card: 222 47% 6%;
-  --card-foreground: 210 40% 98%;
-  --card-border: 217 33% 15%;
-  
-  --popover: 222 47% 6%;
-  --popover-foreground: 210 40% 98%;
-  --popover-border: 217 33% 15%;
-  
-  --border: 217 33% 15%;
-  --input: 217 33% 15%;
-  --ring: 43 96% 56%;
+  /* Deep cosmic purple theme */
+  --background: 270 40% 5%;
+  --foreground: 270 20% 97%;
+
+  --muted: 270 30% 13%;
+  --muted-foreground: 270 15% 65%;
+
+  /* Vivid purple accent */
+  --primary: 270 80% 65%;
+  --primary-foreground: 270 40% 5%;
+
+  --secondary: 270 30% 13%;
+  --secondary-foreground: 270 20% 97%;
+
+  --card: 270 40% 6%;
+  --card-foreground: 270 20% 97%;
+  --card-border: 270 30% 14%;
+
+  --popover: 270 40% 6%;
+  --popover-foreground: 270 20% 97%;
+  --popover-border: 270 30% 14%;
+
+  --border: 270 30% 14%;
+  --input: 270 30% 13%;
+  --ring: 270 80% 65%;
 
   --destructive: 0 84% 60%;
-  --destructive-foreground: 210 40% 98%;
+  --destructive-foreground: 270 20% 97%;
 
   --radius: 0.75rem;
 }
