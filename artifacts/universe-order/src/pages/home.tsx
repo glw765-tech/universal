@@ -35,12 +35,15 @@ export default function Home() {
 
   return (
     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease: "easeOut" }} className="w-full max-w-xl flex flex-col items-center">
+      <h1 className="font-serif text-3xl md:text-4xl text-foreground text-center leading-relaxed mb-8">
+        What do you want from the universe?
+      </h1>
       <textarea
         ref={textareaRef}
         value={intention}
         onChange={(e) => setIntention(e.target.value)}
-        placeholder="What do you want from the universe?"
-        className="w-full bg-transparent text-center font-serif text-3xl md:text-4xl outline-none resize-none placeholder:text-muted-foreground/30 text-foreground leading-relaxed"
+        placeholder="Write your intention here…"
+        className="w-full bg-white/5 border border-white/10 rounded-2xl text-center font-serif text-xl md:text-2xl outline-none resize-none placeholder:text-muted-foreground/30 text-foreground leading-relaxed p-6 focus:border-primary/30 focus:bg-white/8 transition-colors duration-300"
         rows={4}
       />
       <div className="h-24 mt-8 flex items-center justify-center">
