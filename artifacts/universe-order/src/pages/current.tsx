@@ -5,17 +5,17 @@ import { motion } from "framer-motion";
 import { Loader } from "@/components/loader";
 
 const STATUS_LABEL: Record<string, string> = {
-  pending_payment: "Awaiting Payment",
   processing: "Processing",
   in_transit: "In Transit",
 };
 
 export default function CurrentOrders() {
   const sessionToken = getSessionToken();
-  const { data: orders, isLoading } = useGetCurrentOrders(
+  const { data: rawOrders, isLoading } = useGetCurrentOrders(
     { sessionToken },
     { query: { enabled: !!sessionToken } }
   );
+  const orders = rawOrders?.filter(o => o.status !== "pending_payment");
 
   if (isLoading) return <Loader />;
 
