@@ -22,18 +22,20 @@ export function Layout({ children }: { children: ReactNode }) {
         <Link href="/" className="hover:text-primary transition-colors duration-500 cursor-pointer">
           Universe
         </Link>
-        <nav className="flex items-center gap-6">
+        <nav className="flex items-center gap-5">
+          <span className="text-foreground/40">Orders</span>
+          <span className="text-white/10">|</span>
           <button
             onClick={() => setModalOpen(true)}
             className="hover:text-primary transition-colors duration-500 cursor-pointer"
           >
-            Link Orders
+            Link
           </button>
           <Link href="/current" className="hover:text-primary transition-colors duration-500 cursor-pointer">
-            Current Orders
+            Current
           </Link>
           <Link href="/history" className="hover:text-primary transition-colors duration-500 cursor-pointer">
-            Manifested Orders
+            Manifested
           </Link>
         </nav>
       </header>
