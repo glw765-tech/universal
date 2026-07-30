@@ -30,7 +30,7 @@ export function Layout({ children }: { children: ReactNode }) {
       {/* Particles */}
       <Stars />
       
-      <header className="relative z-10 w-full p-6 flex justify-between items-center text-xs tracking-widest uppercase text-muted-foreground">
+      <header className="relative z-50 w-full p-6 flex justify-between items-center text-xs tracking-widest uppercase text-muted-foreground">
         <Link href="/" className="hover:text-primary transition-colors duration-500 cursor-pointer">
           Universe
         </Link>
