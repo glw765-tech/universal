@@ -44,7 +44,7 @@ export default function Home() {
         Write your desire, seal it with $1, and send it into the cosmos. The universe will receive it, process it, and deliver it to you.
       </motion.p>
       <h1 className="font-serif text-3xl md:text-4xl text-foreground text-center leading-relaxed mb-8">
-        What do you want from the universe?
+        What do you wish to manifest?
       </h1>
       <textarea
         ref={textareaRef}
