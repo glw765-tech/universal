@@ -1,21 +1,12 @@
 import { useState, useRef } from "react";
-import { Link } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import { getSessionToken, setActiveOrderId } from "@/lib/session";
-import { useCreateOrder, useCreateOrderCheckout, useGetActiveOrder, useGetOrderProduct, getGetActiveOrderQueryKey } from "@workspace/api-client-react";
-import { Loader } from "@/components/loader";
-import { useQueryClient } from "@tanstack/react-query";
+import { useCreateOrder, useCreateOrderCheckout, useGetOrderProduct } from "@workspace/api-client-react";
 
 export default function Home() {
   const sessionToken = getSessionToken();
   const [intention, setIntention] = useState("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const queryClient = useQueryClient();
-
-  const { data: activeOrderData, isLoading: isActiveLoading } = useGetActiveOrder(
-    { sessionToken },
-    { query: { enabled: !!sessionToken, queryKey: getGetActiveOrderQueryKey({ sessionToken }) } }
-  );
 
   const { data: product } = useGetOrderProduct();
   const createOrder = useCreateOrder();
@@ -42,26 +33,6 @@ export default function Home() {
       console.error(e);
     }
   };
-
-  if (isActiveLoading) return <Loader />;
-
-  const activeOrder = activeOrderData?.order;
-
-  if (activeOrder && activeOrder.status !== "delivered") {
-    return (
-      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="flex flex-col items-center text-center space-y-8">
-        <p className="font-serif text-2xl md:text-3xl text-foreground text-balance">
-          You have a request in motion.
-        </p>
-        <p className="text-muted-foreground text-sm tracking-wide">
-          The universe is working. Wait for it to unfold before asking anew.
-        </p>
-        <Link href={`/order/${activeOrder.id}`} className="mt-4 px-8 py-3 rounded-full border border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-500 uppercase tracking-widest text-xs shadow-[0_0_10px_rgba(251,191,36,0.1)] hover:shadow-[0_0_20px_rgba(251,191,36,0.3)]">
-          View Your Order
-        </Link>
-      </motion.div>
-    );
-  }
 
   return (
     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease: "easeOut" }} className="w-full max-w-xl flex flex-col items-center">

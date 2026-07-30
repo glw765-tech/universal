@@ -166,13 +166,6 @@ router.post("/orders", async (req, res): Promise<void> => {
     return;
   }
 
-  // Check for existing active order
-  const existing = await storage.getActiveOrderForSession(parsed.data.sessionToken);
-  if (existing) {
-    res.status(409).json({ error: "You already have an active order with the universe. One at a time — focus your intention." });
-    return;
-  }
-
   const order = await storage.createOrder({
     intention: parsed.data.intention,
     sessionToken: parsed.data.sessionToken,
