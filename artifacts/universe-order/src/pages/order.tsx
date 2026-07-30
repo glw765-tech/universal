@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useState, useRef, useCallback } from "react";
 import { useParams, Link } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import { getSessionToken } from "@/lib/session";
 import { useGetOrder, useConfirmOrderDelivery, getGetOrderQueryKey } from "@workspace/api-client-react";
 import { Loader } from "@/components/loader";
 import { useQueryClient } from "@tanstack/react-query";
-import { Check } from "lucide-react";
+import { Check, Download, Share2, X } from "lucide-react";
+import ShareableCard from "@/components/shareable-card";
+import { toPng } from "html-to-image";
 
 const STAGES = [
   { title: "Order Received", number: 1 },
@@ -26,6 +28,9 @@ export default function OrderTracking() {
   
   const confirmDelivery = useConfirmOrderDelivery();
   const [showCelebration, setShowCelebration] = useState(false);
+  const [showCard, setShowCard] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
 
   const handleConfirm = async () => {
     if (!order) return;
@@ -36,7 +41,50 @@ export default function OrderTracking() {
     } catch(e) {
       console.error(e);
     }
-  }
+  };
+
+  const generateImage = useCallback(async (): Promise<string | null> => {
+    if (!cardRef.current) return null;
+    setIsGenerating(true);
+    try {
+      const dataUrl = await toPng(cardRef.current, { pixelRatio: 2, cacheBust: true });
+      return dataUrl;
+    } catch (e) {
+      console.error("Failed to generate card image", e);
+      return null;
+    } finally {
+      setIsGenerating(false);
+    }
+  }, []);
+
+  const handleDownload = useCallback(async () => {
+    const dataUrl = await generateImage();
+    if (!dataUrl) return;
+    const link = document.createElement("a");
+    link.download = "manifested.png";
+    link.href = dataUrl;
+    link.click();
+  }, [generateImage]);
+
+  const handleShare = useCallback(async () => {
+    const dataUrl = await generateImage();
+    if (!dataUrl) return;
+    try {
+      const blob = await (await fetch(dataUrl)).blob();
+      const file = new File([blob], "manifested.png", { type: "image/png" });
+      if (navigator.canShare?.({ files: [file] })) {
+        await navigator.share({ files: [file], title: "I manifested this ✨" });
+        return;
+      }
+    } catch (e) {
+      // Web Share API not available or user cancelled — fall through to download
+    }
+    // Fallback: download
+    const link = document.createElement("a");
+    link.download = "manifested.png";
+    link.href = dataUrl;
+    link.click();
+  }, [generateImage]);
 
   if (isLoading) return <Loader />;
 
@@ -104,6 +152,21 @@ export default function OrderTracking() {
         <p className="font-serif text-xl md:text-2xl text-foreground relative z-10 leading-snug">"{order.intention}"</p>
       </div>
 
+      {/* Share this moment button — shown on delivered orders */}
+      <AnimatePresence>
+        {isDelivered && (
+          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }} transition={{ delay: 0.3 }} className="mt-8 flex justify-center">
+            <button
+              onClick={() => setShowCard(true)}
+              className="flex items-center gap-2 px-8 py-3 rounded-full border border-primary/40 text-primary hover:bg-primary/10 transition-all uppercase tracking-widest text-xs cursor-pointer"
+            >
+              <Share2 size={14} />
+              Share this moment
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <AnimatePresence>
         {order.status === "in_transit" && (
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} className="mt-16 flex justify-center">
@@ -118,6 +181,7 @@ export default function OrderTracking() {
         )}
       </AnimatePresence>
 
+      {/* Celebration overlay — shown immediately after confirmation */}
       <AnimatePresence>
         {showCelebration && (
           <motion.div 
@@ -134,12 +198,91 @@ export default function OrderTracking() {
               <p className="text-muted-foreground text-lg leading-relaxed max-w-md mb-12">
                 Your intention has been fulfilled. Keep this feeling of trust with you as you move forward.
               </p>
-              <button 
-                onClick={() => setShowCelebration(false)} 
-                className="px-10 py-3 rounded-full border border-primary/40 text-primary hover:bg-primary hover:text-primary-foreground transition-all uppercase tracking-widest text-xs cursor-pointer shadow-[0_0_10px_rgba(251,191,36,0.1)]"
+              <div className="flex flex-col sm:flex-row items-center gap-4">
+                <button 
+                  onClick={() => { setShowCelebration(false); setShowCard(true); }}
+                  className="flex items-center gap-2 px-10 py-3 rounded-full bg-primary text-primary-foreground hover:scale-105 transition-all uppercase tracking-widest text-xs cursor-pointer shadow-[0_0_20px_rgba(251,191,36,0.3)]"
+                >
+                  <Share2 size={14} />
+                  Share this moment
+                </button>
+                <button 
+                  onClick={() => setShowCelebration(false)} 
+                  className="px-10 py-3 rounded-full border border-primary/40 text-primary hover:bg-primary/10 transition-all uppercase tracking-widest text-xs cursor-pointer"
+                >
+                  Close
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Share card modal */}
+      <AnimatePresence>
+        {showCard && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-background/95 backdrop-blur-md flex flex-col items-center justify-center p-6"
+          >
+            <motion.div
+              initial={{ scale: 0.92, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className="flex flex-col items-center gap-6 w-full max-w-lg"
+            >
+              {/* Close button */}
+              <div className="w-full flex justify-end">
+                <button
+                  onClick={() => setShowCard(false)}
+                  className="text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+                  aria-label="Close"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+
+              <p className="text-xs tracking-widest uppercase text-muted-foreground">Your manifestation card</p>
+
+              {/* Card preview — scale 600×600 card down to 300×300 */}
+              <div
+                className="rounded-2xl shadow-[0_0_60px_rgba(251,191,36,0.15)] overflow-hidden"
+                style={{ width: "300px", height: "300px", flexShrink: 0 }}
               >
-                Close
-              </button>
+                <div style={{ transform: "scale(0.5)", transformOrigin: "top left", width: "600px", height: "600px" }}>
+                  <ShareableCard
+                    ref={cardRef}
+                    intention={order.intention}
+                    confirmedAt={order.confirmedAt}
+                  />
+                </div>
+              </div>
+
+              {/* Action buttons */}
+              <div className="flex flex-col sm:flex-row items-center gap-3 w-full">
+                <button
+                  onClick={handleDownload}
+                  disabled={isGenerating}
+                  className="flex-1 flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground hover:scale-105 transition-all uppercase tracking-widest text-xs cursor-pointer shadow-[0_0_20px_rgba(251,191,36,0.2)] disabled:opacity-50 disabled:cursor-wait"
+                >
+                  <Download size={14} />
+                  {isGenerating ? "Generating…" : "Download"}
+                </button>
+                <button
+                  onClick={handleShare}
+                  disabled={isGenerating}
+                  className="flex-1 flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-primary/40 text-primary hover:bg-primary/10 transition-all uppercase tracking-widest text-xs cursor-pointer disabled:opacity-50 disabled:cursor-wait"
+                >
+                  <Share2 size={14} />
+                  {isGenerating ? "Generating…" : "Share"}
+                </button>
+              </div>
+
+              <p className="text-xs text-muted-foreground/50">
+                A 600 × 600 image will be saved to your device
+              </p>
             </motion.div>
           </motion.div>
         )}
