@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 export function Scene2() {
   return (
     <motion.div 
-      className="absolute inset-0 flex flex-col items-center justify-center z-10 p-10"
+      className="absolute inset-0 flex flex-col items-center justify-center z-10 p-6"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0, scale: 0.9, filter: 'blur(20px)' }}
@@ -18,14 +18,14 @@ export function Scene2() {
         <motion.img
           src={`${import.meta.env.BASE_URL}images/gold_seal.png`}
           alt="Gold Seal"
-          className="w-64 h-64 object-contain mb-8 drop-shadow-[0_0_40px_rgba(255,215,0,0.6)]"
+          className="w-40 h-40 object-contain mb-3 drop-shadow-[0_0_40px_rgba(255,215,0,0.6)]"
           initial={{ scale: 3, opacity: 0, rotate: -45 }}
           animate={{ scale: 1, opacity: 1, rotate: 0 }}
           transition={{ delay: 0.5, type: 'spring', stiffness: 100, damping: 20 }}
         />
         
         <motion.h2 
-          className="font-display text-6xl md:text-8xl text-gradient-gold text-center leading-tight tracking-wide mb-6"
+          className="font-display text-6xl md:text-8xl text-gradient-gold text-center leading-tight tracking-wide mb-2"
           initial={{ opacity: 0, filter: 'blur(10px)', y: 20 }}
           animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
           transition={{ delay: 1.2, duration: 1.0 }}
@@ -34,7 +34,7 @@ export function Scene2() {
         </motion.h2>
 
         <motion.h3
-          className="font-body font-light text-5xl md:text-6xl text-[var(--color-text-secondary)] tracking-widest uppercase mb-6 text-center"
+          className="font-body font-light text-5xl md:text-6xl text-[var(--color-text-secondary)] tracking-widest uppercase mb-3 text-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2.0, duration: 1.2 }}
@@ -43,7 +43,7 @@ export function Scene2() {
         </motion.h3>
 
         <motion.p
-          className="font-body font-light text-3xl md:text-5xl text-[var(--color-text-secondary)] italic text-center max-w-4xl mb-10 leading-relaxed px-4"
+          className="font-body font-light text-3xl md:text-5xl text-[var(--color-text-secondary)] italic text-center max-w-4xl mb-4 leading-relaxed px-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2.6, duration: 1.4 }}
