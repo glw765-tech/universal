@@ -35,6 +35,14 @@ export default function Home() {
 
   return (
     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease: "easeOut" }} className="w-full max-w-xl flex flex-col items-center">
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.4, duration: 1 }}
+        className="text-muted-foreground/60 text-sm text-center leading-relaxed mb-8 max-w-sm"
+      >
+        Write your desire, seal it with $1, and send it into the cosmos. The universe will receive it, process it, and deliver it to you.
+      </motion.p>
       <h1 className="font-serif text-3xl md:text-4xl text-foreground text-center leading-relaxed mb-8">
         What do you want from the universe?
       </h1>
@@ -62,35 +70,6 @@ export default function Home() {
           )}
         </AnimatePresence>
       </div>
-
-      {/* Explanation */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 1.2 }}
-        className="mt-8 w-full max-w-sm flex flex-col items-center gap-6 text-center"
-      >
-        <p className="text-muted-foreground/60 text-xs uppercase tracking-[0.2em]">How it works</p>
-        <div className="flex flex-col gap-5 w-full">
-          {[
-            { step: "01", label: "Write your intention", detail: "Name what you want. Be specific. The universe listens." },
-            { step: "02", label: "Seal & send for $1", detail: "A small act of commitment. Your order enters the cosmos." },
-            { step: "03", label: "Track your order", detail: "Follow it from Processing through In Transit to Delivered." },
-            { step: "04", label: "Confirm delivery", detail: "When it arrives, mark it received and celebrate." },
-          ].map(({ step, label, detail }) => (
-            <div key={step} className="flex items-start gap-4 text-left">
-              <span className="text-primary/40 font-mono text-xs pt-0.5 shrink-0">{step}</span>
-              <div>
-                <p className="text-foreground/70 text-sm font-medium">{label}</p>
-                <p className="text-muted-foreground/50 text-xs mt-0.5 leading-relaxed">{detail}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-        <Link href="/history" className="mt-2 text-muted-foreground/40 hover:text-primary/60 text-xs tracking-widest uppercase transition-colors duration-300">
-          View past orders
-        </Link>
-      </motion.div>
     </motion.div>
   );
 }
