@@ -41,8 +41,7 @@ export default function Home() {
         transition={{ delay: 0.4, duration: 1 }}
         className="text-amber-400/60 text-base text-center leading-relaxed mb-8 max-w-sm"
       >
-        Write your desire, seal it with $1, and send it into the cosmos. The universe will receive it, process it, and deliver it to you.{" "}
-        <span className="text-amber-400/40">The act of placing this order is itself an act of faith — and that faith is what draws it to you.</span>
+        Write your desire, seal it with $1, and send it into the cosmos. The universe will receive it, process it, and deliver it to you.
       </motion.p>
       <h1 className="font-serif text-3xl md:text-4xl text-foreground text-center leading-relaxed mb-8">
         What do you want from the universe?
@@ -55,6 +54,9 @@ export default function Home() {
         className="w-full bg-white/5 border border-white/10 rounded-2xl text-center font-serif text-xl md:text-2xl outline-none resize-none placeholder:text-muted-foreground/30 text-foreground leading-relaxed p-6 focus:border-primary/30 focus:bg-white/8 transition-colors duration-300"
         rows={4}
       />
+      <p className="text-amber-400/50 text-sm text-center italic leading-relaxed mt-4 max-w-sm">
+        The act of placing this order is itself an act of faith — and that faith is what draws it to you.
+      </p>
       <div className="h-16 mt-6 flex items-center justify-center">
         <AnimatePresence>
           {intention.trim().length > 0 && (
