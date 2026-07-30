@@ -59,19 +59,12 @@ export function Layout({ children }: { children: ReactNode }) {
             }`}
           >
             <div className="bg-[#0e0718] border border-primary/20 rounded-xl overflow-hidden shadow-[0_8px_32px_rgba(120,40,200,0.25)]">
-              <button
-                onClick={() => { setModalOpen(true); setDropdownOpen(false); }}
-                className="w-full text-left px-4 py-3 hover:bg-primary/10 hover:text-primary transition-colors duration-200 flex items-center gap-3"
-              >
-                <span className="text-primary/40">✦</span> Link
-              </button>
-              <div className="border-t border-primary/10" />
               <Link
                 href="/current"
                 onClick={() => setDropdownOpen(false)}
                 className="block px-4 py-3 hover:bg-primary/10 hover:text-primary transition-colors duration-200 flex items-center gap-3"
               >
-                <span className="text-primary/40">✦</span> Current
+                <span className="text-primary/40">✦</span> Track
               </Link>
               <div className="border-t border-primary/10" />
               <Link
@@ -79,8 +72,15 @@ export function Layout({ children }: { children: ReactNode }) {
                 onClick={() => setDropdownOpen(false)}
                 className="block px-4 py-3 hover:bg-primary/10 hover:text-primary transition-colors duration-200 flex items-center gap-3"
               >
-                <span className="text-primary/40">✦</span> Manifested
+                <span className="text-primary/40">✦</span> History
               </Link>
+              <div className="border-t border-primary/10" />
+              <button
+                onClick={() => { setModalOpen(true); setDropdownOpen(false); }}
+                className="w-full text-left px-4 py-3 hover:bg-primary/10 hover:text-primary transition-colors duration-200 flex items-center gap-3"
+              >
+                <span className="text-primary/40">✦</span> Link
+              </button>
             </div>
           </div>
         </div>
