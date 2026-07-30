@@ -15,7 +15,8 @@ export default function History() {
 
   return (
     <div className="w-full flex flex-col items-center max-w-xl mx-auto py-12">
-      <h1 className="font-serif text-3xl md:text-4xl text-foreground mb-12">Past Orders</h1>
+      <h1 className="font-serif text-3xl md:text-4xl text-foreground mb-4">Manifested</h1>
+      <p className="text-muted-foreground/50 text-sm text-center mb-12 max-w-sm leading-relaxed">These orders have been fulfilled — they are your current reality.</p>
       
       {!orders || orders.length === 0 ? (
         <p className="text-center text-muted-foreground font-serif italic text-lg">You have no completed orders yet.</p>

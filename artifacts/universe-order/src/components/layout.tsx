@@ -24,7 +24,7 @@ export function Layout({ children }: { children: ReactNode }) {
             Current Orders
           </Link>
           <Link href="/history" className="hover:text-primary transition-colors duration-500 cursor-pointer">
-            Past Orders
+            Manifested
           </Link>
         </nav>
       </header>
