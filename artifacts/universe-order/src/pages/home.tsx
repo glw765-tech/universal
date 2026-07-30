@@ -27,7 +27,7 @@ export default function Home() {
         data: { sessionToken }
       });
 
-      window.location.href = checkout.url;
+      window.open(checkout.url, '_top');
     } catch (e) {
       console.error(e);
     }
