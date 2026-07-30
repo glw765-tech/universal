@@ -52,7 +52,7 @@ export function Layout({ children }: { children: ReactNode }) {
 
           {/* Dropdown panel */}
           <div
-            className={`absolute right-0 mt-3 w-44 transition-all duration-200 origin-top-right ${
+            className={`absolute right-0 mt-3 w-44 z-50 transition-all duration-200 origin-top-right ${
               dropdownOpen
                 ? "opacity-100 scale-100 translate-y-0 pointer-events-auto"
                 : "opacity-0 scale-95 -translate-y-1 pointer-events-none"
