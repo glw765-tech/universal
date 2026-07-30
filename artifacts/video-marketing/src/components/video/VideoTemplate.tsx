@@ -11,7 +11,7 @@ import { Scene5 } from './Scene5';
 
 export const SCENE_DURATIONS: Record<string, number> = {
   scene1: 4000,
-  scene2: 9000,
+  scene2: 13000,
   scene3: 7000,
   scene4: 7000,
   scene5: 5000,
