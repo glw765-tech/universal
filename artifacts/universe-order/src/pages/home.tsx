@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { getSessionToken, setActiveOrderId } from "@/lib/session";
 import { useCreateOrder, useCreateOrderCheckout, useGetOrderProduct } from "@workspace/api-client-react";
+import { Link } from "wouter";
 
 export default function Home() {
   const sessionToken = getSessionToken();
@@ -20,9 +21,7 @@ export default function Home() {
         data: { intention, sessionToken }
       });
       setActiveOrderId(order.id);
-      
-      queryClient.invalidateQueries({ queryKey: getGetActiveOrderQueryKey({ sessionToken }) });
-      
+
       const checkout = await createCheckout.mutateAsync({
         id: order.id,
         data: { sessionToken }
@@ -60,6 +59,35 @@ export default function Home() {
           )}
         </AnimatePresence>
       </div>
+
+      {/* Explanation */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2, duration: 1.2 }}
+        className="mt-16 w-full max-w-sm flex flex-col items-center gap-6 text-center"
+      >
+        <p className="text-muted-foreground/60 text-xs uppercase tracking-[0.2em]">How it works</p>
+        <div className="flex flex-col gap-5 w-full">
+          {[
+            { step: "01", label: "Write your intention", detail: "Name what you want. Be specific. The universe listens." },
+            { step: "02", label: "Seal & send for $1", detail: "A small act of commitment. Your order enters the cosmos." },
+            { step: "03", label: "Track your order", detail: "Follow it from Processing through In Transit to Delivered." },
+            { step: "04", label: "Confirm delivery", detail: "When it arrives, mark it received and celebrate." },
+          ].map(({ step, label, detail }) => (
+            <div key={step} className="flex items-start gap-4 text-left">
+              <span className="text-primary/40 font-mono text-xs pt-0.5 shrink-0">{step}</span>
+              <div>
+                <p className="text-foreground/70 text-sm font-medium">{label}</p>
+                <p className="text-muted-foreground/50 text-xs mt-0.5 leading-relaxed">{detail}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <Link href="/history" className="mt-2 text-muted-foreground/40 hover:text-primary/60 text-xs tracking-widest uppercase transition-colors duration-300">
+          View past orders
+        </Link>
+      </motion.div>
     </motion.div>
   );
 }
