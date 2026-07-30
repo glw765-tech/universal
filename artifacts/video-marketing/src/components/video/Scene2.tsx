@@ -25,22 +25,13 @@ export function Scene2() {
         />
         
         <motion.h2 
-          className="font-display text-6xl md:text-8xl text-gradient-gold text-center leading-tight tracking-wide mb-2"
+          className="font-display text-6xl md:text-8xl text-gradient-gold text-center leading-tight tracking-wide mb-3"
           initial={{ opacity: 0, filter: 'blur(10px)', y: 20 }}
           animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
           transition={{ delay: 1.2, duration: 1.0 }}
         >
-          Seal it.
+          Seal it, Send it.
         </motion.h2>
-
-        <motion.h3
-          className="font-body font-light text-5xl md:text-6xl text-[var(--color-text-secondary)] tracking-widest uppercase mb-3 text-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2.0, duration: 1.2 }}
-        >
-          Send it to the universe
-        </motion.h3>
 
         <motion.div
           className="px-12 py-4 rounded-full bg-[var(--color-bg-light)] border border-[var(--color-accent)] glow-gold relative overflow-hidden"
