@@ -20,28 +20,18 @@ export function Scene1() {
         Write your desire
       </motion.h2>
 
-      <motion.div 
-        className="glass-panel w-full max-w-3xl rounded-2xl p-8 md:p-12 relative overflow-hidden"
-        initial={{ opacity: 0, scale: 0.9, y: 30 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ delay: 1.0, duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-      >
-        {/* Subtle inner glow */}
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[rgba(255,215,0,0.05)] to-transparent -skew-x-12 translate-x-[-100%] animate-[shimmer_3s_infinite]" />
-        
-        <p className="font-display text-3xl md:text-5xl leading-relaxed text-[var(--color-text-primary)] text-center text-gradient-gold">
-          {desireText.split('').map((char, index) => (
-            <motion.span
-              key={index}
-              initial={{ opacity: 0, filter: 'blur(10px)' }}
-              animate={{ opacity: 1, filter: 'blur(0px)' }}
-              transition={{ delay: 1.5 + index * 0.05, duration: 0.8 }}
-            >
-              {char}
-            </motion.span>
-          ))}
-        </p>
-      </motion.div>
+      <p className="font-display text-3xl md:text-5xl leading-relaxed text-[var(--color-text-primary)] text-center text-gradient-gold max-w-3xl">
+        {desireText.split('').map((char, index) => (
+          <motion.span
+            key={index}
+            initial={{ opacity: 0, filter: 'blur(10px)' }}
+            animate={{ opacity: 1, filter: 'blur(0px)' }}
+            transition={{ delay: 1.5 + index * 0.05, duration: 0.8 }}
+          >
+            {char}
+          </motion.span>
+        ))}
+      </p>
     </motion.div>
   );
 }
