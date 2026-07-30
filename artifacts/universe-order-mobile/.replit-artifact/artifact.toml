@@ -1,0 +1,23 @@
+kind = "mobile"
+previewPath = "/mobile/"
+title = "Order from the Universe — Mobile"
+version = "1.0.0"
+id = "artifacts/universe-order-mobile"
+router = "expo-domain"
+
+[[services]]
+name = "expo"
+ensurePreviewReachable = "/status"
+paths = [ "/mobile/" ]
+localPort = 19669
+
+[services.development]
+run = "pnpm --filter @workspace/universe-order-mobile run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/universe-order-mobile", "run", "build" ]
+run = [ "pnpm", "--filter", "@workspace/universe-order-mobile", "run", "serve" ]
+
+[services.env]
+PORT = "19669"
+BASE_PATH = "/mobile/"
