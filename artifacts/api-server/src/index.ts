@@ -2,6 +2,7 @@ import { runMigrations } from "stripe-replit-sync";
 import { getStripeSync } from "./stripeClient";
 import app from "./app";
 import { logger } from "./lib/logger";
+import { storage } from "./storage";
 
 async function initStripe() {
   const databaseUrl = process.env.DATABASE_URL;
@@ -55,3 +56,23 @@ app.listen(port, (err) => {
   }
   logger.info({ port }, "Server listening");
 });
+
+// Background scheduler: advance processing orders to in_transit every 60 seconds
+const PROCESSING_TO_TRANSIT_AGE_MS = 3 * 60 * 1000; // 3 minutes
+const ADVANCE_INTERVAL_MS = 60 * 1000; // run every 60 seconds
+
+async function advanceEligibleOrders() {
+  try {
+    const orders = await storage.getProcessingOrdersOlderThan(PROCESSING_TO_TRANSIT_AGE_MS);
+    if (orders.length === 0) return;
+    logger.info({ count: orders.length }, "Scheduler: advancing eligible orders to in_transit");
+    await Promise.all(
+      orders.map((order) => storage.advanceOrderStatus(order.id, "in_transit"))
+    );
+  } catch (err) {
+    logger.error({ err }, "Scheduler: error advancing orders");
+  }
+}
+
+setInterval(advanceEligibleOrders, ADVANCE_INTERVAL_MS);
+logger.info({ intervalMs: ADVANCE_INTERVAL_MS }, "Order advancement scheduler started");

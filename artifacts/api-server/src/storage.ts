@@ -74,6 +74,16 @@ export class Storage {
     return order ?? null;
   }
 
+  async getProcessingOrdersOlderThan(ageMs: number) {
+    const cutoff = new Date(Date.now() - ageMs);
+    return await db.select().from(ordersTable).where(
+      and(
+        eq(ordersTable.status, 'processing'),
+        sql`${ordersTable.updatedAt} <= ${cutoff}`
+      )
+    );
+  }
+
   async confirmOrderDelivery(id: number) {
     const [order] = await db.update(ordersTable)
       .set({ status: 'delivered', confirmedAt: new Date() })
