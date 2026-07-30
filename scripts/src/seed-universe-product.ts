@@ -9,9 +9,17 @@ async function seedUniverseProduct() {
       query: "name:'Universe Order' AND active:'true'",
     });
 
+    const DESCRIPTION = 'A sealed intention, sent to the universe. $1 places your cosmic order — track it from Processing through In Transit to Delivered.';
+
     if (existing.data.length > 0) {
-      console.log('Universe Order product already exists:', existing.data[0].id);
-      const prices = await stripe.prices.list({ product: existing.data[0].id, active: true });
+      const product = existing.data[0];
+      console.log('Universe Order product already exists:', product.id);
+      // Ensure description is set even on existing products
+      if (product.description !== DESCRIPTION) {
+        await stripe.products.update(product.id, { description: DESCRIPTION });
+        console.log('Updated description on existing product.');
+      }
+      const prices = await stripe.prices.list({ product: product.id, active: true });
       if (prices.data.length > 0) {
         console.log('Price ID:', prices.data[0].id, '— Amount:', prices.data[0].unit_amount, prices.data[0].currency);
       }
