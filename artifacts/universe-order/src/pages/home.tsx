@@ -52,7 +52,7 @@ export default function Home() {
         onChange={(e) => setIntention(e.target.value)}
         placeholder="Write your desire here"
         className="w-full bg-white/5 border border-white/10 rounded-2xl text-center font-serif text-xl md:text-2xl outline-none resize-none placeholder:text-muted-foreground/30 text-foreground leading-relaxed p-6 focus:border-primary/30 focus:bg-white/8 transition-colors duration-300"
-        rows={4}
+        rows={3}
       />
       <p className="text-amber-400/50 text-sm text-center italic leading-relaxed mt-4 max-w-sm">
         The act of placing this order is itself an act of faith — and that faith is what draws it to you.
