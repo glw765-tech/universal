@@ -42,11 +42,11 @@ export default function Home() {
         ref={textareaRef}
         value={intention}
         onChange={(e) => setIntention(e.target.value)}
-        placeholder="Write your intention here…"
+        placeholder="Write your desire here"
         className="w-full bg-white/5 border border-white/10 rounded-2xl text-center font-serif text-xl md:text-2xl outline-none resize-none placeholder:text-muted-foreground/30 text-foreground leading-relaxed p-6 focus:border-primary/30 focus:bg-white/8 transition-colors duration-300"
         rows={4}
       />
-      <div className="h-24 mt-8 flex items-center justify-center">
+      <div className="h-16 mt-6 flex items-center justify-center">
         <AnimatePresence>
           {intention.trim().length > 0 && (
             <motion.button
@@ -68,7 +68,7 @@ export default function Home() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 1.2 }}
-        className="mt-16 w-full max-w-sm flex flex-col items-center gap-6 text-center"
+        className="mt-8 w-full max-w-sm flex flex-col items-center gap-6 text-center"
       >
         <p className="text-muted-foreground/60 text-xs uppercase tracking-[0.2em]">How it works</p>
         <div className="flex flex-col gap-5 w-full">
