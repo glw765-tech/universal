@@ -10,6 +10,7 @@ export * from './activeOrderResponse';
 export * from './checkoutResponse';
 export * from './errorResponse';
 export * from './getActiveOrderParams';
+export * from './getCurrentOrdersParams';
 export * from './getOrderHistoryParams';
 export * from './healthStatus';
 export * from './order';

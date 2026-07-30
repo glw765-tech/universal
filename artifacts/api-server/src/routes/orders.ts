@@ -146,6 +146,18 @@ router.get("/order-product", async (_req, res): Promise<void> => {
   }
 });
 
+// GET /orders/current — must come before /orders/:id
+router.get("/orders/current", async (req, res): Promise<void> => {
+  const parsed = GetActiveOrderQueryParams.safeParse(req.query);
+  if (!parsed.success) {
+    res.status(400).json({ error: parsed.error.message });
+    return;
+  }
+  const orders = await storage.getCurrentOrdersForSession(parsed.data.sessionToken);
+  const advanced = await Promise.all(orders.map(o => maybeAdvanceOrder(o)));
+  res.json(advanced.map(o => serializeOrder(o!)));
+});
+
 // GET /orders/history
 router.get("/orders/history", async (req, res): Promise<void> => {
   const parsed = GetOrderHistoryQueryParams.safeParse(req.query);

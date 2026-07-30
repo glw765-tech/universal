@@ -24,6 +24,7 @@ import type {
   CheckoutResponse,
   ErrorResponse,
   GetActiveOrderParams,
+  GetCurrentOrdersParams,
   GetOrderHistoryParams,
   HealthStatus,
   Order,
@@ -579,6 +580,90 @@ export function useGetOrderProduct<TData = Awaited<ReturnType<typeof getOrderPro
  ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
 
   const queryOptions = getGetOrderProductQueryOptions(options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
+
+  return withQueryKey(query, queryOptions.queryKey);
+}
+
+
+
+
+
+
+
+export const getGetCurrentOrdersUrl = (params: GetCurrentOrdersParams,) => {
+  const normalizedParams = new URLSearchParams();
+
+  Object.entries(params || {}).forEach(([key, value]) => {
+
+    if (value !== undefined) {
+      normalizedParams.append(key, value === null ? 'null' : String(value))
+    }
+  });
+
+  const stringifiedParams = normalizedParams.toString();
+
+  return stringifiedParams.length > 0 ? `/api/orders/current?${stringifiedParams}` : `/api/orders/current`
+}
+
+/**
+ * @summary Get all active (non-delivered) orders for a session
+ */
+export const getCurrentOrders = async (params: GetCurrentOrdersParams, options?: Parameters<typeof customFetch>[1]): Promise<Order[]> => {
+
+  return customFetch<Order[]>(getGetCurrentOrdersUrl(params),
+  {
+    ...options,
+    method: 'GET'
+
+
+  }
+);}
+
+
+
+
+
+export const getGetCurrentOrdersQueryKey = (params?: GetCurrentOrdersParams,) => {
+    return [
+    `/api/orders/current`, ...(params ? [params] : [])
+    ] as const;
+    }
+
+
+export const getGetCurrentOrdersQueryOptions = <TData = Awaited<ReturnType<typeof getCurrentOrders>>, TError = ErrorType<unknown>>(params: GetCurrentOrdersParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getCurrentOrders>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getGetCurrentOrdersQueryKey(params);
+
+
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getCurrentOrders>>> = ({ signal }) => getCurrentOrders(params, { signal, ...requestOptions });
+
+
+
+
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getCurrentOrders>>, TError, TData> & { queryKey: QueryKey }
+}
+
+export type GetCurrentOrdersQueryResult = NonNullable<Awaited<ReturnType<typeof getCurrentOrders>>>
+export type GetCurrentOrdersQueryError = ErrorType<unknown>
+
+
+/**
+ * @summary Get all active (non-delivered) orders for a session
+ */
+
+export function useGetCurrentOrders<TData = Awaited<ReturnType<typeof getCurrentOrders>>, TError = ErrorType<unknown>>(
+ params: GetCurrentOrdersParams, options?: { query?:UseQueryOptions<Awaited<ReturnType<typeof getCurrentOrders>>, TError, TData>, request?: SecondParameter<typeof customFetch>}
+
+ ):  UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+
+  const queryOptions = getGetCurrentOrdersQueryOptions(params,options)
 
   const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: QueryKey };
 

@@ -81,6 +81,10 @@ export type GetActiveOrderParams = {
 sessionToken: string;
 };
 
+export type GetCurrentOrdersParams = {
+sessionToken: string;
+};
+
 export type GetOrderHistoryParams = {
 sessionToken: string;
 };

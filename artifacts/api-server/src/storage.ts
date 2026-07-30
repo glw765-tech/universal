@@ -28,6 +28,15 @@ export class Storage {
     return order ?? null;
   }
 
+  async getCurrentOrdersForSession(sessionToken: string) {
+    return await db.select().from(ordersTable).where(
+      and(
+        eq(ordersTable.sessionToken, sessionToken),
+        inArray(ordersTable.status, ['pending_payment', 'processing', 'in_transit'])
+      )
+    ).orderBy(ordersTable.createdAt);
+  }
+
   async getDeliveredOrdersForSession(sessionToken: string) {
     return await db.select().from(ordersTable).where(
       and(

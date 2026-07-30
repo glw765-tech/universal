@@ -6,6 +6,7 @@ import OrderTracking from './pages/order';
 import Success from './pages/success';
 import Cancel from './pages/cancel';
 import History from './pages/history';
+import CurrentOrders from './pages/current';
 import NotFound from './pages/not-found';
 
 const queryClient = new QueryClient();
@@ -19,6 +20,7 @@ function Router() {
         <Route path="/success" component={Success} />
         <Route path="/cancel" component={Cancel} />
         <Route path="/history" component={History} />
+        <Route path="/current" component={CurrentOrders} />
         <Route component={NotFound} />
       </Switch>
     </Layout>

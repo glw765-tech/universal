@@ -19,9 +19,14 @@ export function Layout({ children }: { children: ReactNode }) {
         <Link href="/" className="hover:text-primary transition-colors duration-500 cursor-pointer">
           Universe
         </Link>
-        <Link href="/history" className="hover:text-primary transition-colors duration-500 cursor-pointer">
-          Past Orders
-        </Link>
+        <nav className="flex items-center gap-6">
+          <Link href="/current" className="hover:text-primary transition-colors duration-500 cursor-pointer">
+            Current Orders
+          </Link>
+          <Link href="/history" className="hover:text-primary transition-colors duration-500 cursor-pointer">
+            Past Orders
+          </Link>
+        </nav>
       </header>
 
       <main className="relative z-10 flex-1 flex flex-col items-center justify-center p-6 w-full max-w-2xl mx-auto">

@@ -144,6 +144,29 @@ export const GetOrderProductResponse = zod.object({
 
 
 /**
+ * @summary Get all active (non-delivered) orders for a session
+ */
+export const GetCurrentOrdersQueryParams = zod.object({
+  "sessionToken": zod.coerce.string()
+})
+
+export const GetCurrentOrdersResponseItem = zod.object({
+  "id": zod.number(),
+  "intention": zod.string().describe('What the person wants from the universe'),
+  "status": zod.enum(['pending_payment', 'processing', 'in_transit', 'delivered']),
+  "sessionToken": zod.string(),
+  "stripePaymentIntentId": zod.string().nullish(),
+  "stripeCheckoutSessionId": zod.string().nullish(),
+  "motivationalMessage": zod.string().describe('Uplifting message for this stage of the order'),
+  "trackingStage": zod.number().describe('1=pending, 2=processing, 3=in_transit, 4=delivered'),
+  "confirmedAt": zod.string().nullish(),
+  "createdAt": zod.string(),
+  "updatedAt": zod.string().optional()
+})
+export const GetCurrentOrdersResponse = zod.array(GetCurrentOrdersResponseItem)
+
+
+/**
  * @summary Get all past delivered orders for a session
  */
 export const GetOrderHistoryQueryParams = zod.object({
