@@ -10,7 +10,7 @@ export function Scene4() {
       transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
     >
       <motion.h2 
-        className="font-body font-light text-4xl md:text-5xl text-[var(--color-text-secondary)] tracking-widest uppercase mb-12 text-center"
+        className="font-body font-light text-5xl md:text-6xl text-[var(--color-text-secondary)] tracking-widest uppercase mb-12 text-center"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5, duration: 1.2 }}
@@ -19,7 +19,7 @@ export function Scene4() {
       </motion.h2>
 
       <motion.h1 
-        className="font-display text-6xl md:text-8xl text-gradient-gold text-center leading-tight tracking-wide mb-16"
+        className="font-display text-7xl md:text-9xl text-gradient-gold text-center leading-tight tracking-wide mb-16"
         initial={{ opacity: 0, scale: 0.8, filter: 'blur(20px)' }}
         animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
         transition={{ delay: 1.2, duration: 1.5, ease: "easeOut" }}

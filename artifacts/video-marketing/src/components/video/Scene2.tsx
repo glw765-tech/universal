@@ -25,7 +25,7 @@ export function Scene2() {
         />
         
         <motion.h2 
-          className="font-display text-5xl md:text-7xl text-gradient-gold text-center leading-tight tracking-wide mb-6"
+          className="font-display text-6xl md:text-8xl text-gradient-gold text-center leading-tight tracking-wide mb-6"
           initial={{ opacity: 0, filter: 'blur(10px)', y: 20 }}
           animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
           transition={{ delay: 1.2, duration: 1.0 }}
@@ -34,7 +34,7 @@ export function Scene2() {
         </motion.h2>
 
         <motion.h3
-          className="font-body font-light text-4xl md:text-5xl text-[var(--color-text-secondary)] tracking-widest uppercase mb-6 text-center"
+          className="font-body font-light text-5xl md:text-6xl text-[var(--color-text-secondary)] tracking-widest uppercase mb-6 text-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2.0, duration: 1.2 }}
@@ -43,7 +43,7 @@ export function Scene2() {
         </motion.h3>
 
         <motion.p
-          className="font-body font-light text-lg md:text-2xl text-[var(--color-text-muted)] italic text-center max-w-2xl mb-10 leading-relaxed px-4"
+          className="font-body font-light text-3xl md:text-5xl text-[var(--color-text-secondary)] italic text-center max-w-4xl mb-10 leading-relaxed px-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2.6, duration: 1.4 }}
@@ -58,7 +58,7 @@ export function Scene2() {
           transition={{ delay: 2.8, type: 'spring', stiffness: 200, damping: 25 }}
         >
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[rgba(255,215,0,0.2)] to-transparent -translate-x-full animate-[shimmer_2s_infinite]" />
-          <span className="font-display text-2xl tracking-widest text-[var(--color-accent)] uppercase">
+          <span className="font-display text-3xl tracking-widest text-[var(--color-accent)] uppercase">
             Commit for $1
           </span>
         </motion.div>

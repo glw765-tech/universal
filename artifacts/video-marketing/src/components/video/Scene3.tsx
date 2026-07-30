@@ -12,7 +12,7 @@ export function Scene3() {
       transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
     >
       <motion.h2 
-        className="font-body font-light text-4xl md:text-6xl text-[var(--color-text-secondary)] tracking-widest uppercase mb-20 text-center"
+        className="font-body font-light text-5xl md:text-7xl text-[var(--color-text-secondary)] tracking-widest uppercase mb-20 text-center"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5, duration: 1.2 }}
@@ -70,7 +70,7 @@ export function Scene3() {
               animate={{ opacity: [0, 1], y: 0 }}
               transition={{ delay: 1.7 + i * 1.5, duration: 0.8 }}
             >
-              <span className="font-display text-2xl md:text-3xl text-[var(--color-text-primary)]">
+              <span className="font-display text-3xl md:text-4xl text-[var(--color-text-primary)]">
                 {stage}
               </span>
             </motion.div>

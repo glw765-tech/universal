@@ -12,7 +12,7 @@ export function Scene1() {
       transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
     >
       <motion.h2 
-        className="font-display text-6xl md:text-7xl lg:text-8xl text-[var(--color-text-secondary)] mb-8 tracking-widest uppercase"
+        className="font-display text-7xl md:text-8xl lg:text-9xl text-[var(--color-text-secondary)] mb-8 tracking-widest uppercase"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5, duration: 1.2 }}
@@ -20,7 +20,7 @@ export function Scene1() {
         Write your desire
       </motion.h2>
 
-      <p className="font-display text-5xl md:text-7xl leading-relaxed text-[var(--color-text-primary)] text-center text-gradient-gold max-w-4xl">
+      <p className="font-display text-6xl md:text-8xl leading-relaxed text-[var(--color-text-primary)] text-center text-gradient-gold max-w-4xl">
         {desireText.split('').map((char, index) => (
           <motion.span
             key={index}
