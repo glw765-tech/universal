@@ -1,8 +1,11 @@
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import { Link } from "wouter";
 import { Stars } from "./stars";
+import LinkOrdersModal from "./link-orders-modal";
 
 export function Layout({ children }: { children: ReactNode }) {
+  const [modalOpen, setModalOpen] = useState(false);
+
   return (
     <div className="min-h-[100dvh] bg-background text-foreground relative overflow-hidden flex flex-col font-sans">
       {/* Deep cosmic gradients */}
@@ -20,6 +23,12 @@ export function Layout({ children }: { children: ReactNode }) {
           Universe
         </Link>
         <nav className="flex items-center gap-6">
+          <button
+            onClick={() => setModalOpen(true)}
+            className="hover:text-primary transition-colors duration-500 cursor-pointer"
+          >
+            Link Orders
+          </button>
           <Link href="/current" className="hover:text-primary transition-colors duration-500 cursor-pointer">
             Current Orders
           </Link>
@@ -32,6 +41,8 @@ export function Layout({ children }: { children: ReactNode }) {
       <main className="relative z-10 flex-1 flex flex-col items-center justify-center p-6 w-full max-w-2xl mx-auto">
         {children}
       </main>
+
+      <LinkOrdersModal open={modalOpen} onClose={() => setModalOpen(false)} />
     </div>
   );
 }

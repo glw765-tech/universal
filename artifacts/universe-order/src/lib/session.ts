@@ -7,6 +7,10 @@ export function getSessionToken(): string {
   return token;
 }
 
+export function setSessionToken(token: string) {
+  localStorage.setItem('universe_session_token', token);
+}
+
 export function setActiveOrderId(id: number | null) {
   if (id === null) {
     localStorage.removeItem('universe_order_id');

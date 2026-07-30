@@ -1,5 +1,6 @@
-import { eq, sql, and, inArray } from 'drizzle-orm';
-import { db, ordersTable } from '@workspace/db';
+import crypto from 'crypto';
+import { eq, sql, and, inArray, lt } from 'drizzle-orm';
+import { db, ordersTable, userIdentitiesTable, claimCodesTable } from '@workspace/db';
 
 export class Storage {
   // ---- Order operations ----
@@ -90,6 +91,55 @@ export class Storage {
       .where(eq(ordersTable.id, id))
       .returning();
     return order ?? null;
+  }
+
+  // ---- Identity & claim code operations ----
+
+  async createClaimCode(email: string): Promise<string> {
+    // Invalidate any unused prior codes for this email
+    await db.delete(claimCodesTable).where(
+      and(eq(claimCodesTable.email, email), sql`${claimCodesTable.usedAt} IS NULL`)
+    );
+    const code = Math.floor(100000 + Math.random() * 900000).toString();
+    const codeHash = crypto.createHash('sha256').update(code).digest('hex');
+    const expiresAt = new Date(Date.now() + 15 * 60 * 1000);
+    await db.insert(claimCodesTable).values({ email, codeHash, expiresAt });
+    return code;
+  }
+
+  async verifyClaimCode(email: string, code: string, currentSessionToken: string): Promise<string | null> {
+    const codeHash = crypto.createHash('sha256').update(code).digest('hex');
+    const now = new Date();
+
+    const [row] = await db.select().from(claimCodesTable).where(
+      and(
+        eq(claimCodesTable.email, email),
+        eq(claimCodesTable.codeHash, codeHash),
+        sql`${claimCodesTable.usedAt} IS NULL`,
+        sql`${claimCodesTable.expiresAt} > ${now}`
+      )
+    );
+    if (!row) return null;
+
+    // Mark code used
+    await db.update(claimCodesTable).set({ usedAt: now }).where(eq(claimCodesTable.id, row.id));
+
+    // Look up existing identity for this email
+    const [existing] = await db.select().from(userIdentitiesTable).where(eq(userIdentitiesTable.email, email));
+
+    if (existing) {
+      // Migrate any orders from currentSessionToken → canonical session token
+      if (currentSessionToken !== existing.sessionToken) {
+        await db.update(ordersTable)
+          .set({ sessionToken: existing.sessionToken })
+          .where(eq(ordersTable.sessionToken, currentSessionToken));
+      }
+      return existing.sessionToken;
+    } else {
+      // First time linking — register current session as canonical
+      await db.insert(userIdentitiesTable).values({ email, sessionToken: currentSessionToken });
+      return currentSessionToken;
+    }
   }
 
   // ---- Stripe product queries ----
