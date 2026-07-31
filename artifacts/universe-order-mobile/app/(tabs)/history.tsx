@@ -50,7 +50,7 @@ export default function HistoryScreen() {
               <Text style={[styles.emptyTitle, { color: colors.accent }]}>
                 Your fulfilled desires will appear here.
               </Text>
-              <Text style={[styles.emptyBody, { color: colors.accent }]}>
+              <Text style={[styles.emptyBody, { color: colors.mutedForeground }]}>
                 Your delivered orders will appear here once confirmed.
               </Text>
             </View>
