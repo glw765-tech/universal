@@ -47,9 +47,6 @@ export default function HistoryScreen() {
         ListEmptyComponent={
           !isLoading ? (
             <View style={styles.empty}>
-              <Text style={[styles.emptyTitle, { color: colors.accent }]}>
-                Your fulfilled desires will appear here.
-              </Text>
               <Text style={[styles.emptyBody, { color: colors.mutedForeground }]}>
                 Your delivered orders will appear here once confirmed.
               </Text>
