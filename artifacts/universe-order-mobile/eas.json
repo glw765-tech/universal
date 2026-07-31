@@ -24,7 +24,6 @@
   "submit": {
     "production": {
       "ios": {
-        "appleId": "",
         "ascAppId": "6796764798",
         "appleTeamId": "7763W2PGP2"
       }
