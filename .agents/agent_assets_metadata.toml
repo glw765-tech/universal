@@ -24,3 +24,21 @@ id = "1DFEGFHRL5RxhTOOD9Td5"
 uri = "file://attached_assets/resized_IMG_8998_1785516570044.png"
 type = "image"
 title = "Screenshot 3 — History"
+
+[[outputs]]
+id = "ruY5iqIGTwsiWtYnXCs8m"
+uri = "file://attached_assets/ipad_IMG_8996_1785516507911.png"
+type = "image"
+title = "iPad 13\" — Screenshot 1 Order"
+
+[[outputs]]
+id = "FeanQLcbCLgGsMUWSiHnn"
+uri = "file://attached_assets/ipad_IMG_8997_1785516570044.png"
+type = "image"
+title = "iPad 13\" — Screenshot 2 Track"
+
+[[outputs]]
+id = "gOrSYCVMj_E349iaxZICr"
+uri = "file://attached_assets/ipad_IMG_8998_1785516570044.png"
+type = "image"
+title = "iPad 13\" — Screenshot 3 History"
