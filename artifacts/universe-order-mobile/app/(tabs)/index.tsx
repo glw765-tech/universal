@@ -170,9 +170,9 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   input: {
-    fontSize: 18,
+    fontSize: 14,
     fontFamily: 'Inter_400Regular',
-    lineHeight: 28,
+    lineHeight: 22,
     minHeight: 90,
   },
   faithLine: {
