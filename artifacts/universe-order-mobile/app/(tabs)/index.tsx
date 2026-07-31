@@ -43,10 +43,11 @@ export default function ManifestScreen() {
       });
       const checkout = await createCheckout.mutateAsync({
         id: order.id,
-        data: { sessionToken },
+        // mobileReturn=true tells the API to use a redirect endpoint as
+        // success_url so openAuthSessionAsync can detect it and auto-close
+        data: { sessionToken, mobileReturn: true } as any,
       });
-      // openAuthSessionAsync auto-closes the browser when Stripe redirects back
-      // to our app scheme, so the user lands on order detail without manual dismiss
+      // Auto-closes when Stripe → /api/orders/:id/mobile-success → universe-order-mobile://
       await WebBrowser.openAuthSessionAsync(
         checkout.url,
         'universe-order-mobile://',

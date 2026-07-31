@@ -186,6 +186,18 @@ router.post("/orders", async (req, res): Promise<void> => {
   res.status(201).json(serializeOrder(order));
 });
 
+// GET /orders/:id/mobile-success — Stripe success redirect for mobile app
+// Stripe requires an https success_url; this endpoint chain-redirects to the
+// app scheme so openAuthSessionAsync can detect it and close the browser.
+router.get("/orders/:id/mobile-success", async (req, res): Promise<void> => {
+  const params = GetOrderParams.safeParse(req.params);
+  if (!params.success) {
+    res.status(400).json({ error: params.error.message });
+    return;
+  }
+  res.redirect(`universe-order-mobile://order/${params.data.id}`);
+});
+
 // GET /orders/:id
 router.get("/orders/:id", async (req, res): Promise<void> => {
   const params = GetOrderParams.safeParse(req.params);
@@ -248,11 +260,18 @@ router.post("/orders/:id/checkout", async (req, res): Promise<void> => {
 
   const baseUrl = `https://${process.env.REPLIT_DOMAINS?.split(",")[0] || req.get("host")}`;
 
+  // If the mobile client sets mobileReturn=true, use a redirect endpoint as
+  // success_url so the app scheme redirect chain-closes the in-app browser.
+  const mobileReturn = req.body?.mobileReturn === true;
+  const successUrl = mobileReturn
+    ? `${baseUrl}/api/orders/${order.id}/mobile-success`
+    : `${baseUrl}/success?orderId=${order.id}`;
+
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
     line_items: [{ price: priceId, quantity: 1 }],
     mode: "payment",
-    success_url: `${baseUrl}/success?orderId=${order.id}`,
+    success_url: successUrl,
     cancel_url: `${baseUrl}/cancel`,
     metadata: { orderId: String(order.id) },
   });

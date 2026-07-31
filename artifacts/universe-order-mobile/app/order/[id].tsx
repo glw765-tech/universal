@@ -46,7 +46,7 @@ export default function OrderDetailScreen() {
   const [celebrated, setCelebrated] = useState(false);
 
   const { data: order, isLoading } = useGetOrder(
-    { id: Number(id) },
+    Number(id),
     {
       query: {
         enabled: !!id,
