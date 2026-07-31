@@ -16,7 +16,6 @@
     },
     "production": {
       "autoIncrement": true,
-      "monorepoRoot": "../..",
       "ios": {
         "image": "latest"
       }
