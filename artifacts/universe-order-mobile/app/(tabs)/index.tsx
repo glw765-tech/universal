@@ -86,7 +86,7 @@ export default function ManifestScreen() {
 
           {/* Title */}
           <Text style={[styles.heading, { color: colors.foreground }]}>
-            Submit your order to the universe
+            What do you wish to manifest?
           </Text>
 
           {/* Input */}
