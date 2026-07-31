@@ -13,7 +13,7 @@ function NativeTabLayout() {
     <NativeTabs>
       <NativeTabs.Trigger name="index">
         <Icon sf={{ default: 'sparkles', selected: 'sparkles' }} />
-        <Label>Manifest</Label>
+        <Label>Order</Label>
       </NativeTabs.Trigger>
       <NativeTabs.Trigger name="track">
         <Icon sf={{ default: 'location.circle', selected: 'location.circle.fill' }} />
@@ -61,7 +61,7 @@ function ClassicTabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Manifest',
+          title: 'Order',
           tabBarIcon: ({ color }) =>
             isIOS ? (
               <SymbolView name="sparkles" tintColor={color} size={22} />

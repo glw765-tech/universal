@@ -45,10 +45,12 @@ export default function ManifestScreen() {
         id: order.id,
         data: { sessionToken },
       });
-      await WebBrowser.openBrowserAsync(checkout.url, {
-        presentationStyle: WebBrowser.WebBrowserPresentationStyle.FULL_SCREEN,
-      });
-      // After browser closes — navigate to order detail regardless of payment status
+      // openAuthSessionAsync auto-closes the browser when Stripe redirects back
+      // to our app scheme, so the user lands on order detail without manual dismiss
+      await WebBrowser.openAuthSessionAsync(
+        checkout.url,
+        'universe-order-mobile://',
+      );
       router.push(`/order/${order.id}`);
     } catch (e: any) {
       const msg = e?.response?.data?.error ?? e?.message ?? 'Something went wrong.';
@@ -76,7 +78,7 @@ export default function ManifestScreen() {
           showsVerticalScrollIndicator={false}
         >
           {/* Header */}
-          <Text style={[styles.brand, { color: colors.mutedForeground }]}>
+          <Text style={[styles.brand, { color: colors.accent }]}>
             Order from the Universe
           </Text>
 
@@ -100,7 +102,7 @@ export default function ManifestScreen() {
           </View>
 
           {/* Faith line */}
-          <Text style={[styles.faithLine, { color: colors.mutedForeground }]}>
+          <Text style={[styles.faithLine, { color: colors.accent }]}>
             The act of placing this order is itself an act of faith — and that faith is what draws it to you.
           </Text>
 
@@ -123,7 +125,7 @@ export default function ManifestScreen() {
                 <ActivityIndicator color={colors.primaryForeground} />
               ) : (
                 <Text style={[styles.buttonText, { color: colors.primaryForeground }]}>
-                  Seal &amp; Send for $1
+                  Seal &amp; Send $1
                 </Text>
               )}
             </Pressable>
