@@ -52,6 +52,7 @@ export default function ManifestScreen() {
         checkout.url,
         'universe-order-mobile://',
       );
+      setDesire('');
       router.push(`/order/${order.id}`);
     } catch (e: any) {
       const msg = e?.response?.data?.error ?? e?.message ?? 'Something went wrong.';
