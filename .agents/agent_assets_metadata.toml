@@ -6,3 +6,21 @@ id = "96AfeQ4As-VU-9b4yCXXM"
 uri = "file://artifacts/video-marketing/public/audio/bg_music.mp3"
 type = "audio"
 title = "cosmic ambient background music"
+
+[[outputs]]
+id = "DXFgNB51JByBTWKr205hg"
+uri = "file://attached_assets/resized_IMG_8996_1785516507911.png"
+type = "image"
+title = "Screenshot 1 — Order"
+
+[[outputs]]
+id = "Y-LNlaAqWKCTUQnRMD1X7"
+uri = "file://attached_assets/resized_IMG_8997_1785516570044.png"
+type = "image"
+title = "Screenshot 2 — Track"
+
+[[outputs]]
+id = "1DFEGFHRL5RxhTOOD9Td5"
+uri = "file://attached_assets/resized_IMG_8998_1785516570044.png"
+type = "image"
+title = "Screenshot 3 — History"
