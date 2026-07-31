@@ -316,8 +316,8 @@ const styles = StyleSheet.create({
     elevation: 6,
   },
   confirmText: {
-    fontSize: 14,
-    letterSpacing: 1.5,
+    fontSize: 11,
+    letterSpacing: 1.2,
     textTransform: 'uppercase',
     fontFamily: 'Inter_600SemiBold',
     color: '#000',

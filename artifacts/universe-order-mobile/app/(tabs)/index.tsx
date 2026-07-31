@@ -151,6 +151,7 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     marginBottom: 32,
     fontFamily: 'Inter_500Medium',
+    textAlign: 'center',
   },
   heading: {
     fontSize: 28,
