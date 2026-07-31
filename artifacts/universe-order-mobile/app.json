@@ -1,22 +1,30 @@
 {
   "expo": {
-    "name": "Order from the Universe — Mobile",
+    "name": "Order from the Universe",
     "slug": "universe-order-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "universe-order-mobile",
-    "userInterfaceStyle": "automatic",
+    "userInterfaceStyle": "dark",
     "newArchEnabled": true,
     "splash": {
       "image": "./assets/images/icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#0a0315"
     },
     "ios": {
-      "supportsTablet": false
+      "supportsTablet": false,
+      "bundleIdentifier": "com.orderuniverse.app",
+      "buildNumber": "1",
+      "infoPlist": {
+        "NSCameraUsageDescription": "This app does not use the camera.",
+        "CFBundleDisplayName": "Order from the Universe"
+      }
     },
-    "android": {},
+    "android": {
+      "package": "com.orderuniverse.app"
+    },
     "web": {
       "favicon": "./assets/images/icon.png"
     },
@@ -33,6 +41,11 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": ""
+      }
     }
   }
 }
