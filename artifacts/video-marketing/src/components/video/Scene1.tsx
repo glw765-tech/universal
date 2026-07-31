@@ -17,7 +17,7 @@ export function Scene1() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5, duration: 1.2 }}
       >
-        Submit your order to the universe
+        Place your order with the universe.
       </motion.h2>
 
       <p className="font-display text-6xl md:text-8xl leading-relaxed text-[var(--color-text-primary)] text-center text-gradient-gold max-w-4xl">
