@@ -100,7 +100,7 @@ export default function OrderDetailScreen() {
       >
         {/* Back button */}
         <Pressable
-          onPress={() => router.back()}
+          onPress={() => router.replace('/(tabs)/track')}
           style={({ pressed }) => [styles.backBtn, { opacity: pressed ? 0.6 : 1 }]}
         >
           <Feather name="chevron-left" size={22} color={colors.mutedForeground} />
