@@ -48,7 +48,7 @@ export default function HistoryScreen() {
           !isLoading ? (
             <View style={styles.empty}>
               <Text style={[styles.emptyTitle, { color: colors.mutedForeground }]}>
-                Nothing manifested yet
+                Your fulfilled desires will appear here.
               </Text>
               <Text style={[styles.emptyBody, { color: colors.mutedForeground }]}>
                 Your delivered orders will appear here once confirmed.
@@ -139,6 +139,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: 'Inter_600SemiBold',
     marginBottom: 8,
+    textAlign: 'center',
   },
   emptyBody: {
     fontSize: 14,
