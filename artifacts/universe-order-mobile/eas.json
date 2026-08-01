@@ -16,6 +16,9 @@
     },
     "production": {
       "autoIncrement": true,
+      "env": {
+        "PNPM_VERSION": "9.15.4"
+      },
       "ios": {
         "image": "latest"
       }
