@@ -90,6 +90,12 @@ export function Layout({ children }: { children: ReactNode }) {
         {children}
       </main>
 
+      <footer className="relative z-10 w-full p-6 flex justify-center">
+        <Link href="/privacy" className="text-xs tracking-widest uppercase text-muted-foreground/40 hover:text-muted-foreground transition-colors duration-300">
+          Privacy
+        </Link>
+      </footer>
+
       <LinkOrdersModal open={modalOpen} onClose={() => setModalOpen(false)} />
     </div>
   );
