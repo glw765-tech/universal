@@ -33,7 +33,7 @@ export function Scene5() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.5, duration: 1.2 }}
         >
-          Order from the<br />Universe
+          Universal<br />Order
         </motion.h1>
 
         <motion.p
