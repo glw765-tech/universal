@@ -23,7 +23,11 @@
       }
     },
     "android": {
-      "package": "com.orderuniverse.app"
+      "package": "com.universalorder.app",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/icon.png",
+        "backgroundColor": "#0a0315"
+      }
     },
     "web": {
       "favicon": "./assets/images/icon.png"
