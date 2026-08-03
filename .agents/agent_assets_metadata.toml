@@ -119,3 +119,31 @@ uri = "file://attached_assets/screenshots/tablet-10inch/tablet-08-history.jpg"
 type = "image"
 title = "10-inch Screenshot 5 — Order History"
 description = "1600×2560 history screen for 10-inch tablet"
+
+[[outputs]]
+id = "ahGEQVcZtZoFwiM1ieVNK"
+uri = "file://attached_assets/screenshots/chromebook/chromebook-01-home.jpg"
+type = "image"
+title = "Chromebook Screenshot 1 — Home Screen"
+description = "2560×1440 landscape home screen"
+
+[[outputs]]
+id = "xymg94gmovXxiMTMNeMHz"
+uri = "file://attached_assets/screenshots/chromebook/chromebook-02-tracking.jpg"
+type = "image"
+title = "Chromebook Screenshot 2 — Order In Transit"
+description = "2560×1440 landscape tracking screen"
+
+[[outputs]]
+id = "clqypN3luqbCDagX9dGTq"
+uri = "file://attached_assets/screenshots/chromebook/chromebook-03-delivered.jpg"
+type = "image"
+title = "Chromebook Screenshot 3 — Delivered!"
+description = "2560×1440 landscape delivered screen"
+
+[[outputs]]
+id = "19Te46pgxEc2oH60yfpHB"
+uri = "file://attached_assets/screenshots/chromebook/chromebook-04-history.jpg"
+type = "image"
+title = "Chromebook Screenshot 4 — Order History"
+description = "2560×1440 landscape history screen"
