@@ -49,3 +49,38 @@ uri = "file://attached_assets/generated_images/youtube-thumbnail.jpg"
 type = "image"
 title = "YouTube Thumbnail — Universal Order"
 description = "1280×720 YouTube thumbnail. Bold cosmic design with nebula background, golden seal, and dramatic text."
+
+[[outputs]]
+id = "GBqncwVsjFgNCXciDzOmN"
+uri = "file://attached_assets/screenshots/tablet-01-home.jpg"
+type = "image"
+title = "Screenshot 1 — Home Screen"
+description = "Real app screenshot: desire entry form on cosmic background"
+
+[[outputs]]
+id = "MPZABzyydXcmr4GnRgwRB"
+uri = "file://attached_assets/screenshots/tablet-05-desire.jpg"
+type = "image"
+title = "Screenshot 2 — Desire Entry"
+description = "Illustrated: typing a desire with seal & send button"
+
+[[outputs]]
+id = "0haHnurI_FGr-dmjiv_wa"
+uri = "file://attached_assets/screenshots/tablet-06-tracking.jpg"
+type = "image"
+title = "Screenshot 3 — Order In Transit"
+description = "Illustrated: cosmic progress tracker showing order journey"
+
+[[outputs]]
+id = "GcAhs7KCkvGevwTru5d49"
+uri = "file://attached_assets/screenshots/tablet-07-delivered.jpg"
+type = "image"
+title = "Screenshot 4 — Delivered!"
+description = "Illustrated: manifestation card delivered by the universe"
+
+[[outputs]]
+id = "hh2VGICTz7mh3O0xyINij"
+uri = "file://attached_assets/screenshots/tablet-08-history.jpg"
+type = "image"
+title = "Screenshot 5 — Order History"
+description = "Illustrated: manifested orders history list"
