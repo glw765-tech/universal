@@ -42,3 +42,10 @@ id = "gOrSYCVMj_E349iaxZICr"
 uri = "file://attached_assets/ipad_IMG_8998_1785516570044.png"
 type = "image"
 title = "iPad 13\" — Screenshot 3 History"
+
+[[outputs]]
+id = "tv4t2mVW3Z54xWNrCRtiu"
+uri = "file://attached_assets/generated_images/youtube-thumbnail.jpg"
+type = "image"
+title = "YouTube Thumbnail — Universal Order"
+description = "1280×720 YouTube thumbnail. Bold cosmic design with nebula background, golden seal, and dramatic text."
