@@ -84,3 +84,38 @@ uri = "file://attached_assets/screenshots/tablet-08-history.jpg"
 type = "image"
 title = "Screenshot 5 — Order History"
 description = "Illustrated: manifested orders history list"
+
+[[outputs]]
+id = "hqQH5tDxCJIij5Q5nsTwc"
+uri = "file://attached_assets/screenshots/tablet-10inch/tablet-01-home.jpg"
+type = "image"
+title = "10-inch Screenshot 1 — Home Screen"
+description = "1600×2560 home screen for 10-inch tablet"
+
+[[outputs]]
+id = "KXleTRGJrUpUxc-ESekFX"
+uri = "file://attached_assets/screenshots/tablet-10inch/tablet-05-desire.jpg"
+type = "image"
+title = "10-inch Screenshot 2 — Desire Entry"
+description = "1600×2560 desire entry for 10-inch tablet"
+
+[[outputs]]
+id = "SuDYMQBUlTDmjmcvg3d2p"
+uri = "file://attached_assets/screenshots/tablet-10inch/tablet-06-tracking.jpg"
+type = "image"
+title = "10-inch Screenshot 3 — Order In Transit"
+description = "1600×2560 tracking screen for 10-inch tablet"
+
+[[outputs]]
+id = "aj1WQqG6W8Ww6g88ghs3L"
+uri = "file://attached_assets/screenshots/tablet-10inch/tablet-07-delivered.jpg"
+type = "image"
+title = "10-inch Screenshot 4 — Delivered!"
+description = "1600×2560 delivered screen for 10-inch tablet"
+
+[[outputs]]
+id = "ljl-_4Z8NZCMoEzQZvMfi"
+uri = "file://attached_assets/screenshots/tablet-10inch/tablet-08-history.jpg"
+type = "image"
+title = "10-inch Screenshot 5 — Order History"
+description = "1600×2560 history screen for 10-inch tablet"
