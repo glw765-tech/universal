@@ -14,10 +14,6 @@ localPort = 19669
 [services.development]
 run = "pnpm --filter @workspace/universe-order-mobile run dev"
 
-[services.production]
-build = [ "pnpm", "--filter", "@workspace/universe-order-mobile", "run", "build" ]
-run = [ "pnpm", "--filter", "@workspace/universe-order-mobile", "run", "serve" ]
-
 [services.env]
 PORT = "19669"
 BASE_PATH = "/mobile/"
