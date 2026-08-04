@@ -38,10 +38,10 @@ minimumReleaseAgeExclude:
 
 onlyBuiltDependencies:
   - '@swc/core'
+  - esbuild
   - msw
   - unrs-resolver
 
-ignoredBuiltDependencies: []
 
 overrides:
   '@esbuild-kit/esm-loader': npm:tsx@^4.21.0
