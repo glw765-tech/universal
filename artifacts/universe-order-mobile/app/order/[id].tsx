@@ -16,6 +16,7 @@ import {
   useGetOrder,
 } from '@workspace/api-client-react';
 import { CosmicBackground } from '@/components/CosmicBackground';
+import { BottomTabBar } from '@/components/BottomTabBar';
 import { useColors } from '@/hooks/useColors';
 import { useSession } from '@/context/session';
 import { Feather } from '@expo/vector-icons';
@@ -77,13 +78,15 @@ export default function OrderDetailScreen() {
   }
 
   const topPad = Platform.OS === 'web' ? 67 : insets.top;
-  const bottomPad = Platform.OS === 'web' ? 34 : insets.bottom + 16;
+  // Extra bottom padding to clear the BottomTabBar (54px bar + safe area)
+  const bottomPad = Platform.OS === 'web' ? 84 + 34 : insets.bottom + 54 + 16;
 
   if (isLoading || !order) {
     return (
       <View style={[styles.container, styles.center, { backgroundColor: colors.background }]}>
         <CosmicBackground />
         <ActivityIndicator color={colors.primary} size="large" />
+        <BottomTabBar />
       </View>
     );
   }
@@ -226,6 +229,7 @@ export default function OrderDetailScreen() {
           </View>
         )}
       </ScrollView>
+      <BottomTabBar />
     </View>
   );
 }
