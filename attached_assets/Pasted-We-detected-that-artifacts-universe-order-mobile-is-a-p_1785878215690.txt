@@ -1,0 +1,37 @@
+We detected that 'artifacts/universe-order-mobile' is a pnpm workspace
+Running "pnpm install --frozen-lockfile" in /Users/expo/workingdir/build directory
+[WARN] The "pnpm" field in package.json is no longer read by pnpm. The following keys were ignored: "pnpm.onlyBuiltDependencies". See https://pnpm.io/settings for the new home of each setting.
+Scope: all 12 workspace projects
+? Verifying lockfile against supply-chain policies (1138 entries)...
+Lockfile is up to date, resolution step is skipped
+Progress: resolved 1, reused 0, downloaded 0, added 0
+Packages: +1184
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Progress: resolved 1184, reused 0, downloaded 13, added 0
+Progress: resolved 1184, reused 0, downloaded 249, added 16
+Progress: resolved 1184, reused 0, downloaded 347, added 25
+Progress: resolved 1184, reused 0, downloaded 583, added 44
+✓ Lockfile passes supply-chain policies (1138 entries in 4.3s)
+Progress: resolved 1184, reused 0, downloaded 838, added 68
+Progress: resolved 1184, reused 0, downloaded 994, added 80
+Progress: resolved 1184, reused 0, downloaded 1129, added 93
+Progress: resolved 1184, reused 0, downloaded 1132, added 388
+Progress: resolved 1184, reused 0, downloaded 1132, added 503
+Progress: resolved 1184, reused 0, downloaded 1132, added 800
+Progress: resolved 1184, reused 0, downloaded 1132, added 996
+Progress: resolved 1184, reused 0, downloaded 1132, added 1091
+Progress: resolved 1184, reused 0, downloaded 1132, added 1184, done
+dependencies:
++ @replit/connectors-sdk 0.4.1
++ stripe 22.3.2
++ stripe-replit-sync 1.0.0
+
+devDependencies:
++ prettier 3.9.6
++ typescript 5.9.3
+. preinstall$ sh -c 'rm -f package-lock.json yarn.lock; case "$npm_config_user_agent" in pnpm/*) ;; *) echo "Use pnpm instead" >&2; exit 1 ;; esac'
+. preinstall: Done
+[ERR_PNPM_IGNORED_BUILDS] Ignored build scripts: esbuild@0.27.3
+
+Run "pnpm approve-builds" to pick which dependencies should be allowed to run scripts.
+pnpm install --frozen-lockfile exited with non-zero code: 1
