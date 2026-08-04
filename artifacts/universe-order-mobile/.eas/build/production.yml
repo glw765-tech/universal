@@ -1,0 +1,14 @@
+build:
+  name: Production Build
+  steps:
+    - eas/checkout
+    - run:
+        name: Install dependencies
+        command: pnpm install --no-frozen-lockfile
+    - eas/prebuild:
+        clean: true
+        app_dir: artifacts/universe-order-mobile
+    - eas/run_fastlane:
+        if: ${{ eas.job.platform == 'ios' }}
+    - eas/run_gradle:
+        if: ${{ eas.job.platform == 'android' }}

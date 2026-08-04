@@ -15,9 +15,9 @@
       }
     },
     "production": {
+      "config": ".eas/build/production.yml",
       "autoIncrement": true,
       "env": {
-        "PNPM_VERSION": "9.15.4",
         "EXPO_PUBLIC_DOMAIN": "order-universe.replit.app"
       },
       "ios": {
