@@ -38,9 +38,11 @@ minimumReleaseAgeExclude:
 
 onlyBuiltDependencies:
   - '@swc/core'
-  - esbuild
   - msw
   - unrs-resolver
+
+ignoredBuiltDependencies:
+  - esbuild
 
 
 overrides:
