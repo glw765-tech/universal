@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   ActivityIndicator,
+  Animated,
   KeyboardAvoidingView,
   Platform,
   Pressable,
@@ -26,12 +27,30 @@ export default function ManifestScreen() {
   const { sessionToken } = useSession();
   const [desire, setDesire] = useState('');
   const [error, setError] = useState<string | null>(null);
+  const [travelingOrderId, setTravelingOrderId] = useState<number | null>(null);
+  const travelingOpacity = useRef(new Animated.Value(0)).current;
 
   const createOrder = useCreateOrder();
   const createCheckout = useCreateOrderCheckout();
 
   const isLoading = createOrder.isPending || createCheckout.isPending;
   const canSend = desire.trim().length >= 3 && !isLoading && !!sessionToken;
+
+  // When traveling screen appears, fade in then after 3s navigate
+  useEffect(() => {
+    if (travelingOrderId === null) return;
+    Animated.timing(travelingOpacity, {
+      toValue: 1,
+      duration: 600,
+      useNativeDriver: true,
+    }).start();
+    const timer = setTimeout(() => {
+      setTravelingOrderId(null);
+      travelingOpacity.setValue(0);
+      router.push(`/order/${travelingOrderId}`);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [travelingOrderId]);
 
   async function handleSend() {
     if (!canSend || !sessionToken) return;
@@ -53,7 +72,7 @@ export default function ManifestScreen() {
         'universe-order-mobile://',
       );
       setDesire('');
-      router.push(`/order/${order.id}`);
+      setTravelingOrderId(order.id);
     } catch (e: any) {
       const msg = e?.response?.data?.error ?? e?.message ?? 'Something went wrong.';
       setError(msg);
@@ -62,6 +81,24 @@ export default function ManifestScreen() {
 
   const topPad = Platform.OS === 'web' ? 67 : insets.top;
   const bottomPad = Platform.OS === 'web' ? 84 + 34 : insets.bottom + 84;
+
+  // Traveling overlay — shown after payment, before order screen
+  if (travelingOrderId !== null) {
+    return (
+      <View style={[styles.container, styles.center, { backgroundColor: colors.background }]}>
+        <CosmicBackground />
+        <Animated.View style={[styles.travelingInner, { opacity: travelingOpacity }]}>
+          <Text style={[styles.travelingSymbol, { color: colors.accent }]}>✦</Text>
+          <Text style={[styles.travelingTitle, { color: colors.foreground }]}>
+            Your message is traveling
+          </Text>
+          <Text style={[styles.travelingSubtitle, { color: colors.mutedForeground }]}>
+            The universe is listening
+          </Text>
+        </Animated.View>
+      </View>
+    );
+  }
 
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
@@ -140,6 +177,29 @@ export default function ManifestScreen() {
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
+  center: { alignItems: 'center', justifyContent: 'center' },
+  travelingInner: {
+    alignItems: 'center',
+    paddingHorizontal: 40,
+  },
+  travelingSymbol: {
+    fontSize: 36,
+    marginBottom: 24,
+  },
+  travelingTitle: {
+    fontSize: 26,
+    fontFamily: 'Inter_600SemiBold',
+    textAlign: 'center',
+    marginBottom: 12,
+    lineHeight: 34,
+  },
+  travelingSubtitle: {
+    fontSize: 15,
+    fontFamily: 'Inter_400Regular',
+    fontStyle: 'italic',
+    textAlign: 'center',
+    letterSpacing: 1,
+  },
   flex: { flex: 1 },
   scroll: {
     flexGrow: 1,
