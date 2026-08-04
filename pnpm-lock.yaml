@@ -10128,6 +10128,7 @@ snapshots:
   esbuild@0.27.3:
     optionalDependencies:
       '@esbuild/linux-x64': 0.27.3
+    requiresBuild: true
 
   escalade@3.2.0: {}
 

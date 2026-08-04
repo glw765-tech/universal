@@ -6,6 +6,12 @@ packages:
 
 autoInstallPeers: false
 
+onlyBuiltDependencies:
+  - '@swc/core'
+  - esbuild
+  - msw
+  - unrs-resolver
+
 
 catalog:
   '@replit/vite-plugin-cartographer': ^0.5.21
