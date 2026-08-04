@@ -41,9 +41,6 @@ onlyBuiltDependencies:
   - msw
   - unrs-resolver
 
-ignoredBuiltDependencies:
-  - esbuild
-
 
 overrides:
   '@esbuild-kit/esm-loader': npm:tsx@^4.21.0
