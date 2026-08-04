@@ -1,0 +1,15 @@
+diff --git a/package.json b/package.json
+index 0b82fd8b5a5a99f56b44a7fa9e0dc293c7fc78b3..59aed742d7eeff43fc4fa26c27dcc6c2f3c1198b 100644
+--- a/package.json
++++ b/package.json
+@@ -6,9 +6,7 @@
+     "type": "git",
+     "url": "git+https://github.com/evanw/esbuild.git"
+   },
+-  "scripts": {
+-    "postinstall": "node install.js"
+-  },
++  "scripts": {},
+   "main": "lib/main.js",
+   "types": "lib/main.d.ts",
+   "engines": {
