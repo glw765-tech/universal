@@ -19,7 +19,8 @@
       "buildNumber": "1",
       "infoPlist": {
         "NSCameraUsageDescription": "This app does not use the camera.",
-        "CFBundleDisplayName": "Order from the Universe"
+        "CFBundleDisplayName": "Order from the Universe",
+        "ITSAppUsesNonExemptEncryption": false
       }
     },
     "android": {
