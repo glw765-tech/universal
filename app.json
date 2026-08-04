@@ -1,0 +1,18 @@
+{
+  "expo": {
+    "extra": {
+      "eas": {
+        "projectId": "66653152-3684-48c3-a147-905ee9f20fcb"
+      }
+    },
+    "android": {
+      "package": "com.shumark.workspace"
+    },
+    "ios": {
+      "bundleIdentifier": "com.orderuniverse.app",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    }
+  }
+}
