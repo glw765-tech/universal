@@ -153,11 +153,6 @@ overrides:
   rollup>@rollup/rollup-win32-x64-gnu: '-'
   rollup>@rollup/rollup-win32-x64-msvc: '-'
 
-patchedDependencies:
-  esbuild@0.27.3:
-    hash: c84da19e15dd5d34ab697c997ecb2a5e0fb093887f0f7dfbdbbf8fdc8b46fdf4
-    path: patches/esbuild@0.27.3.patch
-
 importers:
 
   .:

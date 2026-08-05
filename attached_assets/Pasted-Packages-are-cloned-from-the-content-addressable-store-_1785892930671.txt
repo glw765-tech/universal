@@ -1,0 +1,69 @@
+Packages are cloned from the content-addressable store to the virtual store.
+  Content-addressable store is at: /Users/givonna_1/Library/pnpm/store/v11
+  Virtual store is at:             ../../node_modules/.pnpm
+../..                                    | Progress: resolved 1184, reused 1127, downloaded 5, added 1184, done
+
+devDependencies:
++ @babel/core 7.29.7
++ @expo-google-fonts/inter 0.4.2
++ @expo/cli 54.0.23
++ @expo/ngrok 4.1.3
++ @expo/vector-icons 15.1.1
++ @react-native-async-storage/async-storage 2.2.0
++ @stardazed/streams-text-encoding 1.0.2
++ @tanstack/react-query 5.101.4
++ @types/react 19.1.17
++ @types/react-dom 19.1.11
++ @ungap/structured-clone 1.3.3
++ babel-plugin-react-compiler 19.0.0-beta-ebf51a3-20250411
++ expo 54.0.36
++ expo-blur 15.0.8
++ expo-constants 18.0.13
++ expo-font 14.0.12
++ expo-glass-effect 0.1.10
++ expo-haptics 15.0.8
++ expo-image 3.0.11
++ expo-image-picker 17.0.11
++ expo-linear-gradient 15.0.8
++ expo-linking 8.0.12
++ expo-location 19.0.8
++ expo-modules-autolinking 3.0.26
++ expo-router 6.0.24
++ expo-splash-screen 31.0.13
++ expo-status-bar 3.0.9
++ expo-symbols 1.0.8
++ expo-system-ui 6.0.9
++ expo-web-browser 15.0.11
++ react 19.1.0
++ react-dom 19.1.0
++ react-native 0.81.5
++ react-native-gesture-handler 2.28.0
++ react-native-keyboard-controller 1.18.5
++ react-native-reanimated 4.1.7
++ react-native-safe-area-context 5.6.2
++ react-native-screens 4.16.0
++ react-native-svg 15.12.1
++ react-native-web 0.21.2
++ react-native-worklets 0.5.1
++ typescript 5.9.3
++ zod 3.25.76
++ zod-validation-error 3.5.4
+
+../.. preinstall$ sh -c 'rm -f package-lock.json yarn.lock; case "$npm_config_user_agent" in pnpm/*) ;; *) echo "Use …
+└─ Done in 34ms
+[ERR_PNPM_IGNORED_BUILDS] Ignored build scripts: esbuild@0.27.3(patch_hash=c84da19e15dd5d34ab697c997ecb2a5e0fb093887f0f7dfbdbbf8fdc8b46fdf4)
+
+Run "pnpm approve-builds" to pick which dependencies should be allowed to run scripts.
+★ eas-cli@21.5.0 is now available.
+To upgrade, run:
+npm install -g eas-cli
+Proceeding with outdated version.
+
+
+⚠️ Detected that your app uses Expo Go for development, this is not recommended when building production apps.
+Learn more: https://expo.fyi/why-not-build-expo-go-for-production
+To suppress this warning, set EAS_BUILD_NO_EXPO_GO_WARNING=true.
+
+Custom build configuration file .eas/build/production does not exist.
+    Error: build command failed.
+givonna2@GMoneysamondMac universe-order-mobile % 
