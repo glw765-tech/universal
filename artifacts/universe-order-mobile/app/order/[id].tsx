@@ -18,6 +18,7 @@ import {
 } from '@workspace/api-client-react';
 import { CosmicBackground } from '@/components/CosmicBackground';
 import { BottomTabBar } from '@/components/BottomTabBar';
+import { CelebrationOverlay } from '@/components/CelebrationOverlay';
 import { useColors } from '@/hooks/useColors';
 import { useSession } from '@/context/session';
 import { Feather } from '@expo/vector-icons';
@@ -46,6 +47,7 @@ export default function OrderDetailScreen() {
   const router = useRouter();
   const { sessionToken } = useSession();
   const [celebrated, setCelebrated] = useState(false);
+  const [showOverlay, setShowOverlay] = useState(false);
 
   const orderId = Number(id);
   const { data: order, isLoading } = useGetOrder(
@@ -78,6 +80,7 @@ export default function OrderDetailScreen() {
         data: { sessionToken },
       });
       setCelebrated(true);
+      setShowOverlay(true);
     } catch {
       // ignore
     }
@@ -227,6 +230,18 @@ export default function OrderDetailScreen() {
             <Text style={[styles.celebrationBody, { color: colors.foreground }]}>
               Your desire has been fulfilled. Keep this feeling of trust with you as you move forward.
             </Text>
+            <Pressable
+              onPress={() => setShowOverlay(true)}
+              style={({ pressed }) => [
+                styles.shareCardBtn,
+                { borderColor: colors.accent, opacity: pressed ? 0.7 : 1 },
+              ]}
+            >
+              <Feather name="share-2" size={14} color={colors.accent} />
+              <Text style={[styles.shareCardText, { color: colors.accent }]}>
+                Share this moment
+              </Text>
+            </Pressable>
           </View>
         )}
 
@@ -240,6 +255,16 @@ export default function OrderDetailScreen() {
         )}
       </ScrollView>
       <BottomTabBar />
+
+      {/* Celebration overlay — shown immediately after confirming, or via "Share" button */}
+      {order && (
+        <CelebrationOverlay
+          visible={showOverlay}
+          intention={order.intention}
+          confirmedAt={(order as any).confirmedAt ?? null}
+          onClose={() => setShowOverlay(false)}
+        />
+      )}
     </View>
   );
 }
@@ -367,5 +392,20 @@ const styles = StyleSheet.create({
     fontFamily: 'Inter_400Regular',
     textAlign: 'center',
     lineHeight: 22,
+  },
+  shareCardBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    borderWidth: 1,
+    borderRadius: 40,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    marginTop: 16,
+  },
+  shareCardText: {
+    fontSize: 12,
+    fontFamily: 'Inter_500Medium',
+    letterSpacing: 0.5,
   },
 });
