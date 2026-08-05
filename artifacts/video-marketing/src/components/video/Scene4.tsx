@@ -10,7 +10,7 @@ export function Scene4() {
       transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
     >
       <motion.h2 
-        className="font-body font-light text-5xl md:text-6xl text-[var(--color-text-secondary)] tracking-widest uppercase mb-12 text-center"
+        className="font-body font-light text-5xl md:text-6xl text-[var(--color-text-secondary)] tracking-widest uppercase mb-12 mt-24 text-center"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5, duration: 1.2 }}
