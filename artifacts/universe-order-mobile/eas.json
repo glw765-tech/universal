@@ -15,6 +15,7 @@
       }
     },
     "production": {
+      "config": "production",
       "autoIncrement": true,
       "env": {
         "EXPO_PUBLIC_DOMAIN": "order-universe.replit.app"
