@@ -1,6 +1,6 @@
 import crypto from 'crypto';
-import { eq, sql, and, inArray, lt } from 'drizzle-orm';
-import { db, ordersTable, userIdentitiesTable, claimCodesTable } from '@workspace/db';
+import { eq, sql, and, inArray } from 'drizzle-orm';
+import { db, ordersTable, userIdentitiesTable, claimCodesTable, pushTokensTable } from '@workspace/db';
 
 export class Storage {
   // ---- Order operations ----
@@ -67,10 +67,15 @@ export class Storage {
     return order ?? null;
   }
 
-  async advanceOrderStatus(id: number, newStatus: string) {
+  /**
+   * Conditionally advance an order's status. The UPDATE only fires when the
+   * order is still in `fromStatus`, so concurrent callers get at most one
+   * non-null return value — only that caller should send a notification.
+   */
+  async advanceOrderStatus(id: number, fromStatus: string, newStatus: string) {
     const [order] = await db.update(ordersTable)
       .set({ status: newStatus })
-      .where(eq(ordersTable.id, id))
+      .where(and(eq(ordersTable.id, id), eq(ordersTable.status, fromStatus)))
       .returning();
     return order ?? null;
   }
@@ -85,10 +90,15 @@ export class Storage {
     );
   }
 
+  /**
+   * Confirm delivery only when the order is still in_transit.
+   * Returns null if another caller already transitioned it, preventing
+   * duplicate delivered notifications.
+   */
   async confirmOrderDelivery(id: number) {
     const [order] = await db.update(ordersTable)
       .set({ status: 'delivered', confirmedAt: new Date() })
-      .where(eq(ordersTable.id, id))
+      .where(and(eq(ordersTable.id, id), eq(ordersTable.status, 'in_transit')))
       .returning();
     return order ?? null;
   }
@@ -155,6 +165,26 @@ export class Storage {
       `
     );
     return result.rows[0] ?? null;
+  }
+
+  // ---- Push token operations ----
+
+  async upsertPushToken(sessionToken: string, expoPushToken: string) {
+    // Insert; if this (session, token) pair already exists, no-op
+    await db
+      .insert(pushTokensTable)
+      .values({ sessionToken, expoPushToken })
+      .onConflictDoNothing({
+        target: [pushTokensTable.sessionToken, pushTokensTable.expoPushToken],
+      });
+  }
+
+  async getPushTokensForSession(sessionToken: string): Promise<string[]> {
+    const rows = await db
+      .select({ expoPushToken: pushTokensTable.expoPushToken })
+      .from(pushTokensTable)
+      .where(eq(pushTokensTable.sessionToken, sessionToken));
+    return rows.map((r) => r.expoPushToken);
   }
 }
 

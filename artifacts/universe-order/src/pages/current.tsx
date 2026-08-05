@@ -1,4 +1,4 @@
-import { useGetCurrentOrders } from "@workspace/api-client-react";
+import { useGetCurrentOrders, getGetCurrentOrdersQueryKey } from "@workspace/api-client-react";
 import { getSessionToken } from "@/lib/session";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
@@ -11,9 +11,10 @@ const STATUS_LABEL: Record<string, string> = {
 
 export default function CurrentOrders() {
   const sessionToken = getSessionToken();
+  const sessionParam = { sessionToken };
   const { data: rawOrders, isLoading } = useGetCurrentOrders(
-    { sessionToken },
-    { query: { enabled: !!sessionToken } }
+    sessionParam,
+    { query: { queryKey: getGetCurrentOrdersQueryKey(sessionParam), enabled: !!sessionToken } }
   );
   const orders = rawOrders?.filter(o => o.status !== "pending_payment");
 

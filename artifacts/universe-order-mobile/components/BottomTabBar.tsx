@@ -77,7 +77,7 @@ export function BottomTabBar({ activeTab }: BottomTabBarProps) {
               style={({ pressed }) => [styles.tab, { opacity: pressed ? 0.7 : 1 }]}
             >
               {isIOS ? (
-                <SymbolView name={isActive ? `${tab.sfIcon}.fill` : tab.sfIcon} tintColor={color} size={22} />
+                <SymbolView name={(isActive ? `${tab.sfIcon}.fill` : tab.sfIcon) as any} tintColor={color} size={22} />
               ) : (
                 <Feather name={tab.featherIcon} size={22} color={color} />
               )}

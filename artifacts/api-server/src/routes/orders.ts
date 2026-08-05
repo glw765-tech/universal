@@ -12,6 +12,7 @@ import {
 import { storage } from "../storage";
 import { getUncachableStripeClient } from "../stripeClient";
 import { logger } from "../lib/logger";
+import { sendOrderStatusNotification } from "../lib/notifications";
 
 const router: IRouter = Router();
 
@@ -48,19 +49,33 @@ function serializeOrder(order: {
   createdAt: Date;
   updatedAt: Date;
 }) {
+  // NOTE: sessionToken and Stripe identifiers are intentionally omitted —
+  // clients do not need them and they must not be exposed over the wire.
   return {
     id: order.id,
     intention: order.intention,
     status: order.status,
-    sessionToken: order.sessionToken,
-    stripePaymentIntentId: order.stripePaymentIntentId ?? null,
-    stripeCheckoutSessionId: order.stripeCheckoutSessionId ?? null,
     motivationalMessage: MOTIVATIONAL_MESSAGES[order.status] ?? "",
     trackingStage: getTrackingStage(order.status),
     confirmedAt: order.confirmedAt?.toISOString() ?? null,
     createdAt: order.createdAt.toISOString(),
     updatedAt: order.updatedAt.toISOString(),
   };
+}
+
+/**
+ * Extract the caller's session token from:
+ *   1. Authorization: Bearer <token>   (mobile / API clients)
+ *   2. sessionToken query param        (legacy / web)
+ */
+function extractSessionToken(req: import("express").Request): string | null {
+  const auth = req.headers.authorization;
+  if (auth?.startsWith("Bearer ")) {
+    return auth.slice(7).trim() || null;
+  }
+  const q = req.query["sessionToken"];
+  if (typeof q === "string" && q.length > 0) return q;
+  return null;
 }
 
 // Auto-advance order status based on time and payment
@@ -90,7 +105,17 @@ async function maybeAdvanceOrder(order: Awaited<ReturnType<typeof storage.getOrd
   if (order.status === "processing") {
     const processingAge = Date.now() - order.updatedAt.getTime();
     if (processingAge >= 3 * 60 * 1000) {
-      const updated = await storage.advanceOrderStatus(order.id, "in_transit");
+      const updated = await storage.advanceOrderStatus(order.id, "processing", "in_transit");
+      if (updated) {
+        // Fire-and-forget push notification
+        storage.getPushTokensForSession(order.sessionToken).then((tokens) => {
+          if (tokens.length > 0) {
+            sendOrderStatusNotification(tokens, order.id, "in_transit").catch(
+              (err) => logger.warn({ err, orderId: order.id }, "Failed to send in_transit push notification")
+            );
+          }
+        }).catch(() => {/* ignore */});
+      }
       return updated ?? order;
     }
   }
@@ -141,7 +166,7 @@ router.get("/order-product", async (_req, res): Promise<void> => {
       currency: prices.data[0].currency ?? "usd",
     });
   } catch (err: any) {
-    req.log.error({ err }, "Failed to fetch order product from Stripe");
+    logger.error({ err }, "Failed to fetch order product from Stripe");
     res.status(500).json({ error: "Failed to retrieve product information." });
   }
 });
@@ -186,9 +211,7 @@ router.post("/orders", async (req, res): Promise<void> => {
   res.status(201).json(serializeOrder(order));
 });
 
-// GET /orders/:id/mobile-success — Stripe success redirect for mobile app
-// Stripe requires an https success_url; this endpoint chain-redirects to the
-// app scheme so openAuthSessionAsync can detect it and close the browser.
+// GET /orders/:id/mobile-success — redirect to app scheme after Stripe checkout
 router.get("/orders/:id/mobile-success", async (req, res): Promise<void> => {
   const params = GetOrderParams.safeParse(req.params);
   if (!params.success) {
@@ -199,6 +222,9 @@ router.get("/orders/:id/mobile-success", async (req, res): Promise<void> => {
 });
 
 // GET /orders/:id
+// Requires the caller to prove ownership via session token (Authorization: Bearer
+// header or ?sessionToken query param). Returns 404 when not found OR when the
+// session does not own the order — indistinguishable to prevent enumeration.
 router.get("/orders/:id", async (req, res): Promise<void> => {
   const params = GetOrderParams.safeParse(req.params);
   if (!params.success) {
@@ -206,8 +232,14 @@ router.get("/orders/:id", async (req, res): Promise<void> => {
     return;
   }
 
+  const callerToken = extractSessionToken(req);
+  if (!callerToken) {
+    res.status(404).json({ error: "Order not found" });
+    return;
+  }
+
   let order = await storage.getOrder(params.data.id);
-  if (!order) {
+  if (!order || order.sessionToken !== callerToken) {
     res.status(404).json({ error: "Order not found" });
     return;
   }
@@ -316,6 +348,15 @@ router.patch("/orders/:id/confirm", async (req, res): Promise<void> => {
     res.status(500).json({ error: "Failed to confirm delivery" });
     return;
   }
+
+  // Fire-and-forget push notification for delivery confirmation
+  storage.getPushTokensForSession(order.sessionToken).then((tokens) => {
+    if (tokens.length > 0) {
+      sendOrderStatusNotification(tokens, order.id, "delivered").catch(
+        (err) => logger.warn({ err, orderId: order.id }, "Failed to send delivered push notification")
+      );
+    }
+  }).catch(() => {/* ignore */});
 
   res.json(serializeOrder(confirmed));
 });

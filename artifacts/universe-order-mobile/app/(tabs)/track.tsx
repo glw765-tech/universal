@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-import { useGetCurrentOrders } from '@workspace/api-client-react';
+import { useGetCurrentOrders, getGetCurrentOrdersQueryKey } from '@workspace/api-client-react';
 import { CosmicBackground } from '@/components/CosmicBackground';
 import { useColors } from '@/hooks/useColors';
 import { useSession } from '@/context/session';
@@ -30,9 +30,10 @@ export default function TrackScreen() {
   const router = useRouter();
   const { sessionToken } = useSession();
 
+  const sessionParam = { sessionToken: sessionToken ?? '' };
   const { data: rawOrders, isLoading, refetch } = useGetCurrentOrders(
-    { sessionToken: sessionToken ?? '' },
-    { query: { enabled: !!sessionToken, refetchInterval: 10000 } }
+    sessionParam,
+    { query: { queryKey: getGetCurrentOrdersQueryKey(sessionParam), enabled: !!sessionToken, refetchInterval: 10000 } }
   );
 
   // Only show paid orders (exclude pending_payment)
@@ -71,7 +72,7 @@ export default function TrackScreen() {
         }
         renderItem={({ item }) => (
           <Pressable
-            onPress={() => router.push(`/order/${item.id}`)}
+            onPress={() => router.push(`/order/${item.id}` as any)}
             style={({ pressed }) => [
               styles.card,
               {

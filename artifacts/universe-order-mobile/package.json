@@ -1,5 +1,5 @@
 {
-  "name": "universe-order-mobile",
+  "name": "@workspace/universe-order-mobile",
   "version": "1.0.0",
   "private": true,
   "packageManager": "pnpm@9.15.4",
@@ -56,5 +56,10 @@
     "typescript": "~5.9.2",
     "zod": "3.25.76",
     "zod-validation-error": "^3.4.0"
+  },
+
+  "dependencies": {
+    "expo-device": "^8.0.10",
+    "expo-notifications": "^0.32.17"
   }
 }

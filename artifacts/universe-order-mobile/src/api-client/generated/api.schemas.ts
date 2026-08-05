@@ -24,11 +24,6 @@ export interface Order {
   /** What the person wants from the universe */
   intention: string;
   status: OrderStatus;
-  sessionToken: string;
-  /** @nullable */
-  stripePaymentIntentId?: string | null;
-  /** @nullable */
-  stripeCheckoutSessionId?: string | null;
   /** Uplifting message for this stage of the order */
   motivationalMessage: string;
   /** 1=pending, 2=processing, 3=in_transit, 4=delivered */

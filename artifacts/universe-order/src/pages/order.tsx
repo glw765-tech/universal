@@ -22,8 +22,9 @@ export default function OrderTracking() {
   const orderId = id ? parseInt(id, 10) : 0;
   const queryClient = useQueryClient();
   
-  const { data: order, isLoading } = useGetOrder(orderId, { 
-    query: { enabled: !!orderId, queryKey: getGetOrderQueryKey(orderId) } 
+  const { data: order, isLoading } = useGetOrder(orderId, {
+    request: sessionToken ? { headers: { Authorization: `Bearer ${sessionToken}` } } : undefined,
+    query: { enabled: !!orderId && !!sessionToken, queryKey: getGetOrderQueryKey(orderId) },
   });
   
   const confirmDelivery = useConfirmOrderDelivery();

@@ -3,6 +3,8 @@ import { getStripeSync } from "./stripeClient";
 import app from "./app";
 import { logger } from "./lib/logger";
 import { storage } from "./storage";
+import { sendOrderStatusNotification } from "./lib/notifications";
+import { pool } from "@workspace/db";
 
 async function initStripe() {
   const databaseUrl = process.env.DATABASE_URL;
@@ -12,7 +14,7 @@ async function initStripe() {
 
   try {
     logger.info("Initializing Stripe schema...");
-    await runMigrations({ databaseUrl, schema: "stripe" });
+    await runMigrations({ databaseUrl });
     logger.info("Stripe schema ready");
 
     const stripeSync = await getStripeSync();
@@ -42,6 +44,28 @@ if (Number.isNaN(port) || port <= 0) {
   throw new Error(`Invalid PORT value: "${rawPort}"`);
 }
 
+// Ensure app tables exist (idempotent DDL — safe to run on every startup)
+async function runAppMigrations() {
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS push_tokens (
+      id serial PRIMARY KEY,
+      session_token text NOT NULL,
+      expo_push_token text NOT NULL,
+      created_at timestamptz NOT NULL DEFAULT now(),
+      updated_at timestamptz NOT NULL DEFAULT now()
+    );
+    CREATE UNIQUE INDEX IF NOT EXISTS push_tokens_session_expo_unique
+      ON push_tokens (session_token, expo_push_token);
+  `);
+}
+
+try {
+  await runAppMigrations();
+  logger.info("App migrations applied");
+} catch (err) {
+  logger.error({ err }, "App migrations failed — server may be unstable");
+}
+
 // Stripe init is non-fatal — server starts even if Stripe credentials aren't available yet
 try {
   await initStripe();
@@ -67,7 +91,20 @@ async function advanceEligibleOrders() {
     if (orders.length === 0) return;
     logger.info({ count: orders.length }, "Scheduler: advancing eligible orders to in_transit");
     await Promise.all(
-      orders.map((order) => storage.advanceOrderStatus(order.id, "in_transit"))
+      orders.map(async (order) => {
+        const updated = await storage.advanceOrderStatus(order.id, "processing", "in_transit");
+        if (updated) {
+          // Fire-and-forget push notification
+          storage.getPushTokensForSession(order.sessionToken).then((tokens) => {
+            if (tokens.length > 0) {
+              sendOrderStatusNotification(tokens, order.id, "in_transit").catch(
+                (err) => logger.warn({ err, orderId: order.id }, "Scheduler: failed to send push notification")
+              );
+            }
+          }).catch(() => {/* ignore */});
+        }
+        return updated;
+      })
     );
   } catch (err) {
     logger.error({ err }, "Scheduler: error advancing orders");

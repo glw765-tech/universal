@@ -14,6 +14,7 @@ import * as Haptics from 'expo-haptics';
 import {
   useConfirmOrderDelivery,
   useGetOrder,
+  getGetOrderQueryKey,
 } from '@workspace/api-client-react';
 import { CosmicBackground } from '@/components/CosmicBackground';
 import { BottomTabBar } from '@/components/BottomTabBar';
@@ -46,11 +47,16 @@ export default function OrderDetailScreen() {
   const { sessionToken } = useSession();
   const [celebrated, setCelebrated] = useState(false);
 
+  const orderId = Number(id);
   const { data: order, isLoading } = useGetOrder(
-    Number(id),
+    orderId,
     {
+      request: sessionToken
+        ? { headers: { Authorization: `Bearer ${sessionToken}` } }
+        : undefined,
       query: {
-        enabled: !!id,
+        queryKey: getGetOrderQueryKey(orderId),
+        enabled: !!id && !!sessionToken,
         refetchInterval: (query) => {
           const status = query.state.data?.status;
           return status === 'delivered' || status === 'in_transit' ? false : 5000;

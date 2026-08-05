@@ -1,4 +1,4 @@
-import { useGetOrderHistory } from "@workspace/api-client-react";
+import { useGetOrderHistory, getGetOrderHistoryQueryKey } from "@workspace/api-client-react";
 import { getSessionToken } from "@/lib/session";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
@@ -6,9 +6,10 @@ import { Loader } from "@/components/loader";
 
 export default function History() {
   const sessionToken = getSessionToken();
+  const sessionParam = { sessionToken };
   const { data: orders, isLoading } = useGetOrderHistory(
-    { sessionToken },
-    { query: { enabled: !!sessionToken } }
+    sessionParam,
+    { query: { queryKey: getGetOrderHistoryQueryKey(sessionParam), enabled: !!sessionToken } }
   );
 
   if (isLoading) return <Loader />;

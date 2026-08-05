@@ -47,7 +47,7 @@ export default function ManifestScreen() {
     const timer = setTimeout(() => {
       setTravelingOrderId(null);
       travelingOpacity.setValue(0);
-      router.push(`/order/${travelingOrderId}`);
+      router.push(`/order/${travelingOrderId}` as any);
     }, 3000);
     return () => clearTimeout(timer);
   }, [travelingOrderId]);

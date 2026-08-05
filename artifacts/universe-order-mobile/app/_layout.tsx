@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
@@ -11,17 +11,50 @@ import {
   Inter_700Bold,
   useFonts,
 } from '@expo-google-fonts/inter';
-import { Stack } from 'expo-router';
+import { Stack, useRouter } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
+import * as Notifications from 'expo-notifications';
 import { setBaseUrl } from '@workspace/api-client-react';
 import { SessionProvider } from '@/context/session';
+import { usePushNotifications } from '@/hooks/usePushNotifications';
 
 // Set API base URL — Expo runs outside the shared proxy and needs an absolute URL
 setBaseUrl(`https://${process.env.EXPO_PUBLIC_DOMAIN}`);
 
+// Show notifications when app is in foreground too
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: true,
+    shouldSetBadge: false,
+    shouldShowBanner: true,
+    shouldShowList: true,
+  }),
+});
+
 SplashScreen.preventAutoHideAsync();
 
 const queryClient = new QueryClient();
+
+function NotificationHandler() {
+  const router = useRouter();
+  const responseListener = useRef<Notifications.EventSubscription | null>(null);
+
+  usePushNotifications();
+
+  useEffect(() => {
+    // Handle tapping a notification — navigate to the Track tab
+    responseListener.current = Notifications.addNotificationResponseReceivedListener(() => {
+      router.push('/(tabs)/track');
+    });
+
+    return () => {
+      responseListener.current?.remove();
+    };
+  }, [router]);
+
+  return null;
+}
 
 function RootLayoutNav() {
   return (
@@ -55,6 +88,7 @@ export default function RootLayout() {
           <SessionProvider>
             <GestureHandlerRootView style={{ flex: 1 }}>
               <KeyboardProvider>
+                <NotificationHandler />
                 <RootLayoutNav />
               </KeyboardProvider>
             </GestureHandlerRootView>

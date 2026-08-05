@@ -12,9 +12,9 @@ export default function Success() {
     if (orderId) {
       const timer = setTimeout(() => setLocation(`/order/${orderId}`), 3500);
       return () => clearTimeout(timer);
-    } else {
-      setLocation("/");
     }
+    setLocation("/");
+    return undefined;
   }, [setLocation]);
 
   return (

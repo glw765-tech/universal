@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-import { useGetOrderHistory } from '@workspace/api-client-react';
+import { useGetOrderHistory, getGetOrderHistoryQueryKey } from '@workspace/api-client-react';
 import { CosmicBackground } from '@/components/CosmicBackground';
 import { useColors } from '@/hooks/useColors';
 import { useSession } from '@/context/session';
@@ -20,9 +20,10 @@ export default function HistoryScreen() {
   const router = useRouter();
   const { sessionToken } = useSession();
 
+  const sessionParam = { sessionToken: sessionToken ?? '' };
   const { data: orders = [], isLoading, refetch } = useGetOrderHistory(
-    { sessionToken: sessionToken ?? '' },
-    { query: { enabled: !!sessionToken } }
+    sessionParam,
+    { query: { queryKey: getGetOrderHistoryQueryKey(sessionParam), enabled: !!sessionToken } }
   );
 
   const topPad = Platform.OS === 'web' ? 67 : insets.top;
@@ -55,7 +56,7 @@ export default function HistoryScreen() {
         }
         renderItem={({ item }) => (
           <Pressable
-            onPress={() => router.push(`/order/${item.id}`)}
+            onPress={() => router.push(`/order/${item.id}` as any)}
             style={({ pressed }) => [
               styles.card,
               {
