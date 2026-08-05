@@ -1,0 +1,87 @@
+[INSTALL_DEPENDENCIES] Running "pnpm install --frozen-lockfile" in /var/folders/cb/wmwqp9m53211vb355y6y3qrc0000gp/T/eas-build-local-nodejs/87a8eb9c-6965-4a3a-96bd-f7f75ea5d158/build directory
+[INSTALL_DEPENDENCIES] Scope: all 12 workspace projects
+[INSTALL_DEPENDENCIES] ✓ Lockfile passes supply-chain policies (verified 14m ago)
+[INSTALL_DEPENDENCIES] Lockfile is up to date, resolution step is skipped
+[INSTALL_DEPENDENCIES] Progress: resolved 1, reused 0, downloaded 0, added 0
+[INSTALL_DEPENDENCIES] Packages: +1184
+[INSTALL_DEPENDENCIES] ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+[INSTALL_DEPENDENCIES] Packages are cloned from the content-addressable store to the virtual store.
+[INSTALL_DEPENDENCIES]   Content-addressable store is at: /Users/givonna_1/Library/pnpm/store/v11
+[INSTALL_DEPENDENCIES]   Virtual store is at:             node_modules/.pnpm
+[INSTALL_DEPENDENCIES] Progress: resolved 1184, reused 1132, downloaded 0, added 77
+[INSTALL_DEPENDENCIES] Progress: resolved 1184, reused 1132, downloaded 0, added 157
+[INSTALL_DEPENDENCIES] Progress: resolved 1184, reused 1132, downloaded 0, added 378
+[INSTALL_DEPENDENCIES] Progress: resolved 1184, reused 1132, downloaded 0, added 640
+[INSTALL_DEPENDENCIES] Progress: resolved 1184, reused 1132, downloaded 0, added 1184, done
+[INSTALL_DEPENDENCIES] dependencies:
+[INSTALL_DEPENDENCIES] + @replit/connectors-sdk 0.4.1
+[INSTALL_DEPENDENCIES] + stripe 22.3.2
+[INSTALL_DEPENDENCIES] + stripe-replit-sync 1.0.0
+[INSTALL_DEPENDENCIES] 
+[INSTALL_DEPENDENCIES] devDependencies:
+[INSTALL_DEPENDENCIES] + prettier 3.9.6
+[INSTALL_DEPENDENCIES] + typescript 5.9.3
+[INSTALL_DEPENDENCIES] . preinstall$ sh -c 'rm -f package-lock.json yarn.lock; case "$npm_config_user_agent" in pnpm/*) ;; *) echo "Use pnpm instead" >&2; exit 1 ;; esac'
+[INSTALL_DEPENDENCIES] . preinstall: Done
+[INSTALL_DEPENDENCIES] Done in 5.4s using pnpm v11.18.0
+[READ_APP_CONFIG] Failed to read the app config file with `expo config` command:
+The `expo` package was not found.
+[READ_APP_CONFIG] Using app configuration:
+[READ_APP_CONFIG] {
+  "extra": {
+    "eas": {
+      "projectId": "66653152-3684-48c3-a147-905ee9f20fcb"
+    }
+  },
+  "android": {
+    "package": "com.shumark.workspace"
+  },
+  "ios": {
+    "bundleIdentifier": "com.orderuniverse.app",
+    "infoPlist": {
+      "ITSAppUsesNonExemptEncryption": false
+    }
+  },
+  "name": "workspace",
+  "slug": "workspace",
+  "version": "0.0.0",
+  "platforms": []
+}
+[PREBUILD] undefined
+[PREBUILD] [ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command "expo" not found
+[PREBUILD] 
+Error: pnpm expo prebuild --no-install --platform android exited with non-zero code: 1
+    at ChildProcess.completionListener (/Users/givonna_1/.npm/_npx/d3f2e1c449fba503/node_modules/@expo/spawn-async/build/spawnAsync.js:113:23)
+    at ChildProcess.wrapper (node:events:639:12)
+    at ChildProcess.emit (node:events:514:20)
+    at ChildProcess.emit (node:domain:473:12)
+    at maybeClose (node:internal/child_process:1125:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:305:5)
+    ...
+    at spawnAsync (/Users/givonna_1/.npm/_npx/d3f2e1c449fba503/node_modules/@expo/spawn-async/build/spawnAsync.js:9:23)
+    at spawn (/Users/givonna_1/.npm/_npx/d3f2e1c449fba503/node_modules/@expo/turtle-spawn/dist/index.js:16:47)
+    at runExpoCliCommand (/Users/givonna_1/.npm/_npx/d3f2e1c449fba503/node_modules/@expo/build-tools/dist/utils/project.js:59:43)
+    at prebuildAsync (/Users/givonna_1/.npm/_npx/d3f2e1c449fba503/node_modules/@expo/build-tools/dist/common/prebuild.js:17:43)
+    at /Users/givonna_1/.npm/_npx/d3f2e1c449fba503/node_modules/@expo/build-tools/dist/builders/android.js:70:44
+    at BuildContext.runBuildPhase (/Users/givonna_1/.npm/_npx/d3f2e1c449fba503/node_modules/@expo/build-tools/dist/context.js:126:34)
+    at buildInnerAsync (/Users/givonna_1/.npm/_npx/d3f2e1c449fba503/node_modules/@expo/build-tools/dist/builders/android.js:64:15)
+    at async buildAsync (/Users/givonna_1/.npm/_npx/d3f2e1c449fba503/node_modules/@expo/build-tools/dist/builders/android.js:46:9)
+    at async runBuilderWithHooksAsync (/Users/givonna_1/.npm/_npx/d3f2e1c449fba503/node_modules/@expo/build-tools/dist/builders/common.js:12:13)
+    at async Object.androidBuilder (/Users/givonna_1/.npm/_npx/d3f2e1c449fba503/node_modules/@expo/build-tools/dist/builders/android.js:31:16)
+
+Build failed
+Unknown error. See logs of the Prebuild build phase for more information.
+Error: Unknown error. See logs of the Prebuild build phase for more information.
+    at resolveBuildPhaseErrorAsync (/Users/givonna_1/.npm/_npx/d3f2e1c449fba503/node_modules/@expo/build-tools/dist/buildErrors/detectError.js:61:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async BuildContext.handleBuildPhaseErrorAsync (/Users/givonna_1/.npm/_npx/d3f2e1c449fba503/node_modules/@expo/build-tools/dist/context.js:193:28)
+    at async BuildContext.runBuildPhase (/Users/givonna_1/.npm/_npx/d3f2e1c449fba503/node_modules/@expo/build-tools/dist/context.js:138:35)
+    at async buildInnerAsync (/Users/givonna_1/.npm/_npx/d3f2e1c449fba503/node_modules/@expo/build-tools/dist/builders/android.js:64:5)
+    at async buildAsync (/Users/givonna_1/.npm/_npx/d3f2e1c449fba503/node_modules/@expo/build-tools/dist/builders/android.js:46:9)
+    at async runBuilderWithHooksAsync (/Users/givonna_1/.npm/_npx/d3f2e1c449fba503/node_modules/@expo/build-tools/dist/builders/common.js:12:13)
+    at async Object.androidBuilder (/Users/givonna_1/.npm/_npx/d3f2e1c449fba503/node_modules/@expo/build-tools/dist/builders/android.js:31:16)
+    at async buildAndroidAsync (/Users/givonna_1/.npm/_npx/d3f2e1c449fba503/node_modules/eas-cli-local-build-plugin/dist/android.js:43:12)
+    at async buildAsync (/Users/givonna_1/.npm/_npx/d3f2e1c449fba503/node_modules/eas-cli-local-build-plugin/dist/build.js:54:29)
+npx -y eas-cli-local-build-plugin@21.4.0 eyJqb2IiOnsidHlwZSI6Im1hbmFnZWQiLCJwbGF0Zm9ybSI6ImFuZHJvaWQiLCJwcm9qZWN0Um9vdERpcmVjdG9yeSI6Ii4iLCJwcm9qZWN0QXJjaGl2ZSI6eyJ0eXBlIjoiUEFUSCIsInBhdGgiOiIvdmFyL2ZvbGRlcnMvY2Ivd213cXA5bTUzMjExdmIzNTV5NnkzcXJjMDAwMGdwL1QvZWFzLWNsaS1ub2RlanMvZTdmOGRmNTctYTZmYS00MmFhLWE3MzQtZDliNzM2NTIyYTgxLnRhci5neiJ9LCJidWlsZGVyRW52aXJvbm1lbnQiOnsiZW52Ijp7fX0sImNhY2hlIjp7ImRpc2FibGVkIjpmYWxzZSwicGF0aHMiOltdLCJjbGVhciI6ZmFsc2V9LCJzZWNyZXRzIjp7ImJ1aWxkQ3JlZGVudGlhbHMiOnsia2V5c3RvcmUiOnsiZGF0YUJhc2U2NCI6Ii91Mys3UUFBQUFJQUFBQUJBQUFBQVFBZ1lqVmlOMkZsTTJNNE1XVmpaamszWWpnek5UTTROemt5WVRBd09HSXhabVFBQUFHZnpVbnVvUUFBQlFNd2dnVC9NQTRHQ2lzR0FRUUJLZ0lSQVFFRkFBU0NCT3ZtOThjTS9WaWw2aEV1bjZpMHRPS1VlbUNXNnphVDJ1Q0s0OUN4MW1lNW9aRTEzYXNWZ3JrWDNFQUszVDZBMlpuMzlxZlhiNDI2K1lYcU54RWlZd1FTN1l5aXZnMDk0bU13RUZRQngxRkZGbk9SeHQ3NlNRVXJyWkRlbnEwMHpFaVZXdlVBbDNQWFQ4R2JwS1VMVnZ6ZU1NWlFZRkhyTHNCeVhJK3FQYUxnb1RPbzFTdnRVSWlMeVIxVmNvempsMndWSzF5eFo3RUd2bWJDR2RwbTljTDZMSWplTklicDBybTgxSytxL0NPY3dyd2xoaDBMQ1hPUTNmVFJJYlJDUzNiM3c4dnhFRUJyTGNmUHRkblU1ZENBN1hNR0oySzFZQmRqUE5hdWhjZXNQeG1RdkZzbXFpTEFWYVlPS0RqbmNEZ1FnZ3YvWW42dEJhTE8zeEVyc1d6dE1DREIrTkxLWFRMdkphSWllVXRRVVJFUUlMeXVrME51RDRkbzRLK1U1ZEdQSzV1eTBDNDQ4eVd4R0taSXhlOHJCNFM0djJXc2FwVUdoSXpOazVLWnNrSUw4MU05VE5iNlhzYWUrendMUnArRm8vYTRqTXE5MnlnZElSMDhwYnVDMk5YZVM5ZU9UZDhweFdsNUZwRUVUdktPdVJIdEpteGVZMlN5a2U4c3RUaW9LaEZZR0VoU1lSck5XOHJpZnV0OGFmbHl4MkZBc1huOGJYaG5JYWdPRGgxTy9wRWxiUEFCbkcrVDJxR1BHUVZxblcrOWNkc0lJd3VoS3NaY0xvRXVCT1lpZXRIcmtPK0czR095Q1liMHRtblNXalBOY3pkcUh6QlhjSHV4OU1vbFhYTzJNZFB1RzI1K1JSdTZGSUl5eU1FNW1vc2lYQ1Z0MGIxdG8venlXSC9GNFh1WUZ6cmZNN2NHOGNaZ21mSXp0R1htMkZoOTRDbWl5Q0VOWFhFaTgyUStQTlpob2RFMVhhbE92WkNORStkV1ZkekoxR0IyVFgwN2FUNTMva2pnYUFtL1NUM3NBR2ZIdEFGOGFJS09kNU1rOGk0MEEwQmwrd0dkK2prMHJEeitKRk80ZjRhR05rM3FyT1luUFNPbFZNTDBmZGVXVTdLcGoxN2piMDlwRm9DRjFyQVNHYUY1ejZRSWxOdEYrQVpXNmltbjNjcmhiQzM4ZmRiWUp6b202UktyU0FLVitZcFY2N2xudlNEbGxkUnFlNDlyeTg2WG1SVllxU3VVcGxVa3NxYkhMSDdYSHZNNndHai9NekVKRzFGQTlHWjdBSjlTVjltNDZodDh4amJQOWV0RUxTakt3SWNNay91Kzd2eW9jU2t0aGpHUGJiS0N3d1hxRkNLaFlsM1BkZzN2QnRZOUVLRDkzM2hkMHRZTzZ6blNqTUxFVjNKTXNkNlQ4TElncFh1UEV1WjdzaHZVOUE3dDZiWmdmSUVYQ3VleWd1NVFRYmRBZUg3QkE5NzRkOGk5Ly94bHMxdWJvY3N6Tjg4aXMybmJ1aE9wSzFqZXJZaVFxNnlrd1VRalhUdjM5Q0FhN2ZkR0piRkt2TkU1SkVRMGZ3Zm0wR1JCb2p1S202RzdVMmwrRG9obWVHWWYwTDhueFF5RTJ6dlhJTTJPbTVqeWFoV2t0RFY2cDgrdjFENXpWeVA0SHRLbXZldW85Y2dwL1BBVGRHK01NZk03NlZUN1U1YVNJd09iZGdQM0FxSFBVT05wdUlZaFE2WnFTYkVEZDBPWWF3RUtVNTZwRy9Qa05pOVpHNHZSdG8zMUkyaHR2VHhZRlVhdmMzVlZobGZhSmdxaFI0N2thNEdIaUtEOG52QjZJUTFsY1o2NzRQMGs5aUIyb2s2TmNPTXA0blBpK1RaT3dsdWFVUzJaTDRtS1l4bi8ybk1DY3BKRzMyU3R2NVhIZitOVlFhTyttdC8vZVI1N0J2TVhTQkJsc1JEK0EwaTNweHJOdzdNSTRlSHhLTEZyakpndldQcWVOQnVQOEMyRGFRMlZvQUtNcnZFdGZTRVJGMVRodERaMHBPYUI2MlRZTFY1RTdSZ3FBMWR0aDVLWmZMYmEvNERwK2FFTzlQdHRwWFNuRSsxNkhTSHBGaTJLb0NNa2poUm41a3habC84aW5TODNOS3VLYUwzdGNtalpUa05WYmNlMjhsZWhyT3hOTnI5TjYvcXdKRFl6NnlmeDhqdzF3bkI1ODFkZUwxNFVLRWtxRk9UU0drY2VZd0FBQUFFQUJWZ3VOVEE1QUFBRExqQ0NBeW93Z2dJU29BTUNBUUlDQ1FEaXJ0MmxMQmdLdlRBTkJna3Foa2lHOXcwQkFRc0ZBREJDTVFrd0J3WURWUVFHRXdBeENUQUhCZ05WQkFnVEFERUpNQWNHQTFVRUJ4TUFNUWt3QndZRFZRUUtFd0F4Q1RBSEJnTlZCQXNUQURFSk1BY0dBMVVFQXhNQU1DQVhEVEkyTURnd05ERTFNREF3TVZvWUR6SXdOVE14TWpJd01UVXdNREF4V2pCQ01Ra3dCd1lEVlFRR0V3QXhDVEFIQmdOVkJBZ1RBREVKTUFjR0ExVUVCeE1BTVFrd0J3WURWUVFLRXdBeENUQUhCZ05WQkFzVEFERUpNQWNHQTFVRUF4TUFNSUlCSWpBTkJna3Foa2lHOXcwQkFRRUZBQU9DQVE4QU1JSUJDZ0tDQVFFQTF0NkhwakZUOUVzSmphelBBNzRpcW42TmFrNmk4VVBHMDRuZ1VtaWZkL0ljcE1Gc2tyT0hLcGVPVnVhSFdHMENPblpOOGVOcWtmSkJjQ1N3RGhoUjJmdE15cFEwUHNVQkZEV0VESzZqbnBqaXpJRTlrR2o3MmdOR1VicUNVc3VWMTc1TXM1KzlELy85aTUvZFovUk1tcUJMYnFyVW9JNzdMR3A3TmNoUHlkdDBybnlKOXVsbVhueXZHVkZSRVo5bWpub2FkZ3ZTOTliQklodGdsTXZQMjFnVmJqWFhwZXBMVFQyc0hQdlZxKzJvK2podWtsTjVDMDdBcmhKYXd4L2tLd2RKQlpjWmh6a2xmclMyRHVwYit6NGxxRVNOdnVGQzJWd3JYc29zZit2anppUUdiS09hK2poSnYzSUg3VGpQL3VnZWVmYWY5M0pTSEFST082aGpJd0lEQVFBQm95RXdIekFkQmdOVkhRNEVGZ1FVUXZqbjJOSUw4NzFVTkRia04wcXhKWEpnVHpvd0RRWUpLb1pJaHZjTkFRRUxCUUFEZ2dFQkFFTHJzZnZaSjFLSndBalhrc3l2UlZIZWUvc1Bib1M1YWZWcHRGT0x6MWdnSXhXK3RQSGhTbUdNRFN1YVBVOE5wcTEvRVpMYlV0QWlnTWZUYTlEcDUwMEZkdjlVZ0hPdjZWRDhDTjRPaGdWT3ROdjYvbnliWHgwTXZybkhkdEpyWWViYlJDKzdtbUtXdmErVWNiR0pDb2Riemo0N2xjSUlLcVM5cytXTE8wWnJtMUJOQmtjWmZtWWxIZUswbUFDRU9OQkxzOHVTd0FUelpmMmZGZFM3TTZJZkNYeEhHUnN4cHpzNWpidHJ2S2lHNnhTelMrcVhrL1V2QURyU1hrSDBMSVB4VDhFcGVpUTF4YW9MWFlXRytWbUp0Z2U5VXFGaVUyN3JiTDIxaWZZcDdUN1MyNGNVK0RzVERHbXlLeVBBNjRCNzh3eTJlVkptTHhJbWVDNlZheHJ5Mm9LM1VhQ1F3TW1oeGkxbDdGN0I3ZEE2cFE9PSIsImtleXN0b3JlUGFzc3dvcmQiOiI3YjRlMzU5MGVkNWQyZDQ3OGEzNmI4N2U4OGY3NTEzNyIsImtleUFsaWFzIjoiYjViN2FlM2M4MWVjZjk3YjgzNTM4NzkyYTAwOGIxZmQiLCJrZXlQYXNzd29yZCI6Ijg2Nzg5ZGVmOThkNDgyODA4Zjg1OTgwN2UwMDBhZGNmIn19fSwidXBkYXRlcyI6e30sInVzZXJuYW1lIjoic2h1bWFyayIsInZlcnNpb24iOnsidmVyc2lvbkNvZGUiOiIzIn0sImV4cGVyaW1lbnRhbCI6e30sIm1vZGUiOiJidWlsZCIsInRyaWdnZXJlZEJ5IjoiRUFTX0NMSSIsImFwcElkIjoiNjY2NTMxNTItMzY4NC00OGMzLWExNDctOTA1ZWU5ZjIwZmNiIiwiaW5pdGlhdGluZ1VzZXJJZCI6ImFkYzFhYTNkLWY0NGItNDhjYi1iMmM5LTFhOWJiN2I5YjE5YyJ9LCJtZXRhZGF0YSI6eyJ0cmFja2luZ0NvbnRleHQiOnsidHJhY2tpbmdfaWQiOiIzMjIxZGUxOS1jOGU2LTRiMTktYmRhMi0zN2EwODFjNDBlZTkiLCJwbGF0Zm9ybSI6ImFuZHJvaWQiLCJhY2NvdW50X2lkIjoiZmMxMjc0MzUtNjkwOS00N2ZiLTkzMzYtODFlMzRiM2FmYTJkIiwicHJvamVjdF9pZCI6IjY2NjUzMTUyLTM2ODQtNDhjMy1hMTQ3LTkwNWVlOWYyMGZjYiIsInByb2plY3RfdHlwZSI6Im1hbmFnZWQiLCJkZXZfY2xpZW50IjpmYWxzZSwibm9fd2FpdCI6ZmFsc2UsInJ1bl9mcm9tX2NpIjpmYWxzZSwibG9jYWwiOnRydWV9LCJhcHBCdWlsZFZlcnNpb24iOiIzIiwiYXBwVmVyc2lvbiI6IjAuMC4wIiwiY2xpVmVyc2lvbiI6IjIxLjQuMCIsIndvcmtmbG93IjoibWFuYWdlZCIsImNyZWRlbnRpYWxzU291cmNlIjoicmVtb3RlIiwiZGlzdHJpYnV0aW9uIjoic3RvcmUiLCJhcHBOYW1lIjoid29ya3NwYWNlIiwiYXBwSWRlbnRpZmllciI6ImNvbS5zaHVtYXJrLndvcmtzcGFjZSIsImJ1aWxkUHJvZmlsZSI6InByb2R1Y3Rpb24iLCJnaXRDb21taXRIYXNoIjoiNGU2MjlmZTBhODcxZjRmNTk3NDEwNzhmZDBkYmQyMTQ0ODM2ZTRmMCIsImdpdENvbW1pdE1lc3NhZ2UiOiJVcGRhdGUgd29ya3NwYWNlIGRlcGVuZGVuY2llcyBhbmQgYXBwbHkgZXNidWlsZCBwYXRjaFxuXG5SZXBsaXQtQ29tbWl0LUF1dGhvcjogQWdlbnQiLCJpc0dpdFdvcmtpbmdUcmVlRGlydHkiOnRydWUsInVzZXJuYW1lIjoic2h1bWFyayIsInJ1bldpdGhOb1dhaXRGbGFnIjpmYWxzZSwicnVuRnJvbUNJIjpmYWxzZSwiZGV2ZWxvcG1lbnRDbGllbnQiOmZhbHNlLCJyZXF1aXJlZFBhY2thZ2VNYW5hZ2VyIjoicG5wbSIsInNpbXVsYXRvciI6ZmFsc2V9fQ== exited with non-zero code: 1
+    Error: build command failed.
+givonna2@GMoneysamondMac universal % 
