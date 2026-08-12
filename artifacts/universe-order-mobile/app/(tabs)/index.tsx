@@ -196,6 +196,23 @@ export default function ManifestScreen() {
               )}
             </Pressable>
           )}
+
+          {/* Legal links */}
+          <View style={styles.legalRow}>
+            <Pressable
+              onPress={() => WebBrowser.openBrowserAsync('https://order-universe.replit.app/privacy')}
+              style={({ pressed }) => ({ opacity: pressed ? 0.6 : 1 })}
+            >
+              <Text style={[styles.legalLink, { color: colors.mutedForeground }]}>Privacy</Text>
+            </Pressable>
+            <Text style={[styles.legalDot, { color: colors.mutedForeground }]}>·</Text>
+            <Pressable
+              onPress={() => WebBrowser.openBrowserAsync('https://order-universe.replit.app/terms')}
+              style={({ pressed }) => ({ opacity: pressed ? 0.6 : 1 })}
+            >
+              <Text style={[styles.legalLink, { color: colors.mutedForeground }]}>Terms &amp; Refunds</Text>
+            </Pressable>
+          </View>
         </ScrollView>
       </KeyboardAvoidingView>
     </View>
@@ -349,5 +366,24 @@ const styles = StyleSheet.create({
     letterSpacing: 2,
     textTransform: 'uppercase',
     fontFamily: 'Inter_600SemiBold',
+  },
+  legalRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+    marginTop: 32,
+    paddingBottom: 8,
+  },
+  legalLink: {
+    fontSize: 11,
+    fontFamily: 'Inter_400Regular',
+    letterSpacing: 1.5,
+    textTransform: 'uppercase',
+    opacity: 0.4,
+  },
+  legalDot: {
+    fontSize: 11,
+    opacity: 0.3,
   },
 });
