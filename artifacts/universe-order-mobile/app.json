@@ -49,8 +49,7 @@
           "color": "#7c3aed",
           "sounds": []
         }
-      ],
-      "react-native-keyboard-controller"
+      ]
     ],
     "experiments": {
       "typedRoutes": true,
