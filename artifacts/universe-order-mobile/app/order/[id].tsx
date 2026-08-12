@@ -271,6 +271,10 @@ export default function OrderDetailScreen() {
           intention={order.intention}
           confirmedAt={(order as any).confirmedAt ?? null}
           onClose={() => setShowOverlay(false)}
+          onViewHistory={() => {
+            setShowOverlay(false);
+            router.replace('/(tabs)/history');
+          }}
         />
       )}
     </View>

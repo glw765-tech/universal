@@ -31,6 +31,7 @@ interface CelebrationOverlayProps {
   intention: string;
   confirmedAt?: string | null;
   onClose: () => void;
+  onViewHistory?: () => void;
 }
 
 export function CelebrationOverlay({
@@ -38,6 +39,7 @@ export function CelebrationOverlay({
   intention,
   confirmedAt,
   onClose,
+  onViewHistory,
 }: CelebrationOverlayProps) {
   const insets = useSafeAreaInsets();
   const colors = useColors();
@@ -220,6 +222,16 @@ export function CelebrationOverlay({
               <Feather name="download" size={15} color="rgba(251,191,36,0.8)" />
               <Text style={styles.secondaryBtnText}>Save to device</Text>
             </Pressable>
+
+            {onViewHistory && (
+              <Pressable
+                onPress={onViewHistory}
+                style={({ pressed }) => [styles.historyBtn, { opacity: pressed ? 0.6 : 1 }]}
+              >
+                <Feather name="clock" size={13} color="rgba(255,255,255,0.35)" />
+                <Text style={styles.historyBtnText}>View in History</Text>
+              </Pressable>
+            )}
           </View>
         </Animated.View>
       </View>
@@ -343,6 +355,19 @@ const styles = StyleSheet.create({
     color: 'rgba(251,191,36,0.8)',
     fontSize: 13,
     fontFamily: 'Inter_500Medium',
+    letterSpacing: 0.3,
+  },
+  historyBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 6,
+    paddingVertical: 10,
+  },
+  historyBtnText: {
+    color: 'rgba(255,255,255,0.35)',
+    fontSize: 13,
+    fontFamily: 'Inter_400Regular',
     letterSpacing: 0.3,
   },
 });
