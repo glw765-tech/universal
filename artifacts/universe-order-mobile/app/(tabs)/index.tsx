@@ -118,11 +118,38 @@ export default function ManifestScreen() {
         >
           {/* Header */}
           <Text style={[styles.brand, { color: colors.accent }]}>
-            Order from the Universe
+            A manifestation practice
           </Text>
 
           {/* Title */}
           <Text style={[styles.heading, { color: colors.foreground }]}>
+            Order from the Universe
+          </Text>
+
+          {/* What this is */}
+          <View style={[styles.explainCard, { borderColor: colors.border, backgroundColor: 'rgba(255,255,255,0.02)' }]}>
+            <Text style={[styles.explainLabel, { color: colors.accent }]}>What this is</Text>
+            <Text style={[styles.explainBody, { color: colors.mutedForeground }]}>
+              A ritual for naming what you want and committing to it. Write your desire, seal it with $1 as an act of faith, and the universe tracks your order — Processing → In Transit → Delivered. When it arrives in your life, you confirm it and receive your manifestation card.
+            </Text>
+            <View style={[styles.explainDivider, { backgroundColor: colors.border }]} />
+            {[
+              ['✦', 'Not a store.', 'No physical goods are shipped.'],
+              ['✦', 'Not a guarantee.', 'This is a spiritual practice. Results are personal.'],
+              ['✦', 'No refunds.', 'The $1 seals your intention and is non-refundable.'],
+            ].map(([icon, bold, rest]) => (
+              <View key={bold} style={styles.explainRow}>
+                <Text style={[styles.explainIcon, { color: colors.accent }]}>{icon}</Text>
+                <Text style={[styles.explainRowText, { color: colors.mutedForeground }]}>
+                  <Text style={[styles.explainBold, { color: colors.foreground }]}>{bold}</Text>
+                  {' '}{rest}
+                </Text>
+              </View>
+            ))}
+          </View>
+
+          {/* Form heading */}
+          <Text style={[styles.formHeading, { color: colors.foreground }]}>
             What do you wish to manifest?
           </Text>
 
@@ -210,16 +237,70 @@ const styles = StyleSheet.create({
     fontSize: 11,
     letterSpacing: 3,
     textTransform: 'uppercase',
-    marginBottom: 32,
+    marginBottom: 20,
     fontFamily: 'Inter_500Medium',
     textAlign: 'center',
   },
   heading: {
-    fontSize: 28,
+    fontSize: 32,
     fontFamily: 'Inter_600SemiBold',
     textAlign: 'center',
-    lineHeight: 38,
+    lineHeight: 42,
     marginBottom: 28,
+  },
+  explainCard: {
+    width: '100%',
+    borderWidth: 1,
+    borderRadius: 20,
+    padding: 20,
+    marginBottom: 32,
+    gap: 10,
+  },
+  explainLabel: {
+    fontSize: 10,
+    letterSpacing: 4,
+    textTransform: 'uppercase',
+    fontFamily: 'Inter_500Medium',
+    textAlign: 'center',
+    marginBottom: 4,
+  },
+  explainBody: {
+    fontSize: 13,
+    fontFamily: 'Inter_400Regular',
+    lineHeight: 21,
+    textAlign: 'center',
+  },
+  explainDivider: {
+    height: 1,
+    width: '100%',
+    marginVertical: 4,
+    opacity: 0.4,
+  },
+  explainRow: {
+    flexDirection: 'row',
+    gap: 10,
+    alignItems: 'flex-start',
+  },
+  explainIcon: {
+    fontSize: 10,
+    marginTop: 4,
+    fontFamily: 'Inter_400Regular',
+  },
+  explainRowText: {
+    fontSize: 12,
+    fontFamily: 'Inter_400Regular',
+    lineHeight: 19,
+    flex: 1,
+  },
+  explainBold: {
+    fontFamily: 'Inter_600SemiBold',
+  },
+  formHeading: {
+    fontSize: 22,
+    fontFamily: 'Inter_600SemiBold',
+    textAlign: 'center',
+    lineHeight: 30,
+    marginBottom: 20,
   },
   inputWrapper: {
     width: '100%',
