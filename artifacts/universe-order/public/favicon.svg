@@ -1,3 +1,14 @@
 <svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="180" height="180" rx="36" fill="#FF3C00"/>
+  <!-- Purple background with rounded corners -->
+  <rect width="180" height="180" rx="36" fill="#2D0A5E"/>
+  <!-- Subtle inner glow -->
+  <rect width="180" height="180" rx="36" fill="url(#glow)" opacity="0.6"/>
+  <!-- "UO" in gold -->
+  <text x="90" y="118" font-family="Georgia, serif" font-size="82" font-weight="700" fill="#F59E0B" text-anchor="middle" letter-spacing="-2">UO</text>
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#7C3AED" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#2D0A5E" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
 </svg>

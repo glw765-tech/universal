@@ -18,7 +18,7 @@ export default function Privacy() {
       <section className="space-y-3">
         <h2 className="text-base font-medium text-foreground tracking-wide">Overview</h2>
         <p className="text-muted-foreground">
-          Order from the Universe ("we", "our", or "the app") is a manifestation tool that lets you
+          Universal Order ("we", "our", or "the app") is a manifestation tool that lets you
           set an intention and receive a symbolic confirmation. This policy explains what information
           we collect, why we collect it, and how it is handled.
         </p>

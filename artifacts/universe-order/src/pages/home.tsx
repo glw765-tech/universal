@@ -142,7 +142,7 @@ export default function Home() {
       >
         <h3 className="text-xs tracking-[0.2em] uppercase text-muted-foreground/50 text-center">Important disclosures</h3>
         <p className="text-muted-foreground/50 text-xs leading-relaxed text-center">
-          <strong className="text-muted-foreground/70">No refunds.</strong> The $1 is a commitment fee that seals your intention. It is non-refundable. This is a spiritual practice, not a guaranteed outcome. Order from the Universe makes no promise that any specific result will occur in the physical world.
+          <strong className="text-muted-foreground/70">No refunds.</strong> The $1 is a commitment fee that seals your intention. It is non-refundable. This is a spiritual practice, not a guaranteed outcome. Universal Order makes no promise that any specific result will occur in the physical world.
         </p>
         <p className="text-muted-foreground/50 text-xs leading-relaxed text-center">
           <strong className="text-muted-foreground/70">Entertainment & personal growth.</strong> This app is offered for entertainment, mindfulness, and personal development purposes only. Results vary. Your experience is your own.
