@@ -155,7 +155,7 @@ const ShareableCard = forwardRef<HTMLDivElement, ShareableCardProps>(
               marginTop: "8px",
             }}
           >
-            Order from the Universe
+            Universal Order
           </p>
         </div>
       </div>
