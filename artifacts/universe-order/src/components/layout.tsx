@@ -90,9 +90,12 @@ export function Layout({ children }: { children: ReactNode }) {
         {children}
       </main>
 
-      <footer className="relative z-10 w-full p-6 flex justify-center">
+      <footer className="relative z-10 w-full p-6 flex justify-center gap-8">
         <Link href="/privacy" className="text-xs tracking-widest uppercase text-muted-foreground/40 hover:text-muted-foreground transition-colors duration-300">
           Privacy
+        </Link>
+        <Link href="/terms" className="text-xs tracking-widest uppercase text-muted-foreground/40 hover:text-muted-foreground transition-colors duration-300">
+          Terms &amp; Refunds
         </Link>
       </footer>
 
