@@ -61,7 +61,7 @@ export default function OrderDetailScreen() {
         enabled: !!id && !!sessionToken,
         refetchInterval: (query) => {
           const status = query.state.data?.status;
-          return status === 'delivered' || status === 'in_transit' ? false : 5000;
+          return status === 'delivered' ? false : 5000;
         },
       },
     }
@@ -69,20 +69,23 @@ export default function OrderDetailScreen() {
 
   const confirmDelivery = useConfirmOrderDelivery();
 
-  const currentStage = order ? statusToStage(order.status) : 1;
+  // If user just confirmed (celebrated) or order is already delivered, show all stages complete
+  const currentStage = (celebrated || order?.status === 'delivered')
+    ? STAGES.length + 1
+    : order ? statusToStage(order.status) : 1;
 
   async function handleConfirm() {
     if (!sessionToken || !order) return;
     try {
-      await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
       await confirmDelivery.mutateAsync({
         id: order.id,
         data: { sessionToken },
       });
+      await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
       setCelebrated(true);
       setShowOverlay(true);
     } catch {
-      // ignore
+      // API failed — do not mark as celebrated so user can retry
     }
   }
 
@@ -202,23 +205,28 @@ export default function OrderDetailScreen() {
 
         {/* Confirm delivery button (in_transit) */}
         {order.status === 'in_transit' && !celebrated && (
-          <Pressable
-            onPress={handleConfirm}
-            disabled={confirmDelivery.isPending}
-            style={({ pressed }) => [
-              styles.confirmBtn,
-              {
-                backgroundColor: colors.accent,
-                opacity: pressed || confirmDelivery.isPending ? 0.8 : 1,
-              },
-            ]}
-          >
-            {confirmDelivery.isPending ? (
-              <ActivityIndicator color="#000" />
-            ) : (
-              <Text style={styles.confirmText}>I've Received This ✦</Text>
-            )}
-          </Pressable>
+          <View style={styles.confirmSection}>
+            <Text style={[styles.confirmHint, { color: colors.mutedForeground }]}>
+              When what you desired arrives in your life — a feeling, an opportunity, or the thing itself — tap below to seal it.
+            </Text>
+            <Pressable
+              onPress={handleConfirm}
+              disabled={confirmDelivery.isPending}
+              style={({ pressed }) => [
+                styles.confirmBtn,
+                {
+                  backgroundColor: colors.accent,
+                  opacity: pressed || confirmDelivery.isPending ? 0.8 : 1,
+                },
+              ]}
+            >
+              {confirmDelivery.isPending ? (
+                <ActivityIndicator color="#000" />
+              ) : (
+                <Text style={styles.confirmText}>It Has Manifested ✦</Text>
+              )}
+            </Pressable>
+          </View>
         )}
 
         {/* Celebration — delivered */}
@@ -342,12 +350,23 @@ const styles = StyleSheet.create({
     marginVertical: 4,
     borderRadius: 1,
   },
+  confirmSection: {
+    marginBottom: 20,
+  },
+  confirmHint: {
+    fontSize: 13,
+    fontFamily: 'Inter_400Regular',
+    fontStyle: 'italic',
+    textAlign: 'center',
+    lineHeight: 20,
+    marginBottom: 16,
+    paddingHorizontal: 8,
+  },
   confirmBtn: {
     borderRadius: 40,
     paddingVertical: 16,
     paddingHorizontal: 32,
     alignItems: 'center',
-    marginBottom: 20,
     shadowColor: '#f59e0b',
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0.4,
