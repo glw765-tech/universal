@@ -130,7 +130,7 @@ export default function ManifestScreen() {
           <View style={[styles.explainCard, { borderColor: colors.border, backgroundColor: 'rgba(255,255,255,0.02)' }]}>
             <Text style={[styles.explainLabel, { color: colors.accent }]}>What this is</Text>
             <Text style={[styles.explainBody, { color: colors.mutedForeground }]}>
-              A ritual for naming what you want and committing to it. Write your desire, seal it with $1 as an act of faith, and the universe tracks your order — Processing → In Transit → Delivered. When it arrives in your life, you confirm it and receive your manifestation card.
+              Write your desire, seal it with $1 as an act of faith, and the universe tracks your order — Processing → In Transit → Delivered. When it arrives in your life, you confirm it and receive your manifestation card.
             </Text>
             <View style={[styles.explainDivider, { backgroundColor: colors.border }]} />
             {[

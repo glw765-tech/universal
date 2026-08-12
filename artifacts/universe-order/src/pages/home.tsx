@@ -44,7 +44,7 @@ export default function Home() {
           Order from<br />the Universe
         </h1>
         <p className="text-muted-foreground text-base leading-relaxed max-w-sm">
-          A ritual for what you want most. Write your desire, seal it with intention, and let the universe work.
+          Write your desire, seal it with intention, and let the universe work.
         </p>
       </motion.div>
 
@@ -73,7 +73,7 @@ export default function Home() {
       >
         <h2 className="text-xs tracking-[0.25em] uppercase text-amber-400/60 text-center">What this is</h2>
         <p className="text-muted-foreground text-sm leading-relaxed text-center">
-          Manifestation is the practice of clearly naming what you want, committing to it, and staying open to receiving it. This app turns that practice into a ritual with a beginning, a middle, and an end.
+          Manifestation is the practice of clearly naming what you want, committing to it, and staying open to receiving it. This app gives that practice a beginning, a middle, and an end.
         </p>
         <div className="border-t border-white/10 pt-4 flex flex-col gap-3">
           {[

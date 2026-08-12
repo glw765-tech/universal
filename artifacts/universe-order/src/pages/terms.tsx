@@ -18,7 +18,7 @@ export default function Terms() {
       <section className="space-y-3">
         <h2 className="text-base font-medium text-foreground tracking-wide">What this app is</h2>
         <p className="text-muted-foreground">
-          Order from the Universe is a manifestation and mindfulness tool. It provides a structured ritual for setting intentions: you write a desire, commit to it with a $1 symbolic fee, and receive a personalised order that advances through cosmic stages as time passes. When you feel your desire has arrived in your life — as a feeling, an opportunity, or a tangible outcome — you confirm it and receive a manifestation card.
+          Order from the Universe is a manifestation and mindfulness tool. It provides a structured practice for setting intentions: you write a desire, commit to it with a $1 symbolic fee, and receive a personalised order that advances through cosmic stages as time passes. When you feel your desire has arrived in your life — as a feeling, an opportunity, or a tangible outcome — you confirm it and receive a manifestation card.
         </p>
         <p className="text-muted-foreground">
           This app is offered for <strong className="text-foreground/80">entertainment, personal development, and mindfulness purposes only.</strong> It is a spiritual practice tool, not a service that delivers physical goods or guarantees any real-world result. Results are entirely personal and will vary from person to person.
@@ -31,7 +31,7 @@ export default function Terms() {
           The $1 you pay when placing an order is a <strong className="text-foreground/80">symbolic commitment fee</strong> — an act of faith that seals your intention. It covers the cost of operating the platform and represents your personal commitment to the manifestation practice.
         </p>
         <p className="text-muted-foreground">
-          By completing payment you acknowledge that this fee is for access to the ritual experience, not for the delivery of any physical product or guaranteed outcome.
+          By completing payment you acknowledge that this fee is for access to this experience, not for the delivery of any physical product or guaranteed outcome.
         </p>
       </section>
 
