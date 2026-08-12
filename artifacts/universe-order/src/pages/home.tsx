@@ -57,7 +57,7 @@ export default function Home() {
       >
         <iframe
           className="w-full h-full"
-          src="https://www.youtube.com/embed/tNeHuIE5hd0?rel=0&modestbranding=1"
+          src="https://www.youtube.com/embed/EECpp3xELGg?rel=0&modestbranding=1"
           title="Order from the Universe"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
