@@ -223,7 +223,7 @@ export default function OrderDetailScreen() {
               {confirmDelivery.isPending ? (
                 <ActivityIndicator color="#000" />
               ) : (
-                <Text style={styles.confirmText}>It Has Manifested ✦</Text>
+                <Text style={styles.confirmText}>Confirm Delivery</Text>
               )}
             </Pressable>
           </View>
